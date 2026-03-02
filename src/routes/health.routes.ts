@@ -1,11 +1,11 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
 
 const router = Router();
 
-router.get("/health", (req: Request, res: Response) => {
+router.get("/health", (req, res) => {
   res.status(200).json({
     status: "ok",
-    timestamp: new Date().toISOString(),
+    timestamp: new Date(),
     uptime: process.uptime(),
   });
 });
