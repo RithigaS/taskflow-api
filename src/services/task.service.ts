@@ -1,5 +1,8 @@
 import { Task, TaskStatus } from "../models/Task";
 
+export const getAllTasks = async () => {
+  return await Task.find({ isDeleted: false });
+};
 export const createTask = async (data: any) => {
   return await Task.create(data);
 };

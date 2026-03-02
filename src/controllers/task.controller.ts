@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import * as taskService from "../services/task.service";
-import { TaskStatus } from "../models/Task";
+import { Task, TaskStatus } from "../models/Task";
 
 /* ================= CREATE ================= */
+
 export const createTask = async (req: Request, res: Response) => {
   try {
     const task = await taskService.createTask(req.body);
@@ -102,6 +103,21 @@ export const deleteTask = async (
     res.status(200).json({
       success: true,
       message: "Task deleted successfully",
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+export const getAllTasks = async (req: Request, res: Response) => {
+  try {
+    const tasks = await taskService.getAllTasks();
+
+    res.status(200).json({
+      success: true,
+      data: tasks,
     });
   } catch (error: any) {
     res.status(500).json({
