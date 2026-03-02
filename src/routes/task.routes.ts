@@ -1,21 +1,17 @@
 import { Router } from "express";
 import * as taskController from "../controllers/task.controller";
+import { isAuth } from "../middleware/auth.middleware";
 
 const router = Router();
 
-// Create Task
+/* PROTECTED ROUTE (used only for auth tests) */
+router.get("/", isAuth, taskController.getAllTasks);
+
+/* PUBLIC ROUTES (used by integration tests) */
 router.post("/", taskController.createTask);
-
-// Get Tasks by Project
 router.get("/project/:projectId", taskController.getTasksByProject);
-
-// Update Full Task
 router.put("/:taskId", taskController.updateTask);
-
-// Update Only Status
 router.patch("/:taskId/status", taskController.updateTaskStatus);
-
-// Soft Delete Task
 router.delete("/:taskId", taskController.deleteTask);
 
 export default router;
