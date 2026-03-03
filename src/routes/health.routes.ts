@@ -2,10 +2,10 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/health", (req, res) => {
+router.get("/", (req, res) => {
   res.status(200).json({
     status: "ok",
-    timestamp: new Date(),
+    timestamp: new Date().toISOString(),
     uptime: process.uptime(),
   });
 });

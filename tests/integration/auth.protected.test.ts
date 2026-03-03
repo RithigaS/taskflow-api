@@ -4,8 +4,7 @@ import { generateToken } from "../../src/utils/jwt";
 
 describe("Protected Routes", () => {
   it("should allow access with valid token", async () => {
-    const token = generateToken("123");
-
+    const token = generateToken({ userId: "123" });
     const res = await request(app)
       .get("/api/tasks")
       .set("Authorization", `Bearer ${token}`);

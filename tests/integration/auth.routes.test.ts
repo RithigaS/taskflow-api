@@ -38,7 +38,7 @@ describe("Auth Routes", () => {
         password: "password123",
       });
 
-      expect(res.status).toBe(500);
+      expect(res.status).toBe(409);
     });
   });
 
@@ -67,7 +67,7 @@ describe("Auth Routes", () => {
         password: "wrongpass",
       });
 
-      expect(res.status).toBe(500);
+      expect(res.status).toBe(401);
     });
   });
 });

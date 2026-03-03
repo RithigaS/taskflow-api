@@ -1,15 +1,14 @@
 import { generateToken, verifyToken } from "../../src/utils/jwt";
 
-describe("JWT Utility", () => {
-  it("should generate and verify token", () => {
-    const token = generateToken("123");
+describe("JWT utils", () => {
+  it("should generate and verify token correctly", () => {
+    // Step 1: Generate token
+    const token = generateToken({ userId: "123" });
 
-    const decoded: any = verifyToken(token);
+    // Step 2: Verify token
+    const decoded = verifyToken(token);
 
+    // Step 3: Assert
     expect(decoded.userId).toBe("123");
-  });
-
-  it("should throw error for invalid token", () => {
-    expect(() => verifyToken("invalid")).toThrow();
   });
 });

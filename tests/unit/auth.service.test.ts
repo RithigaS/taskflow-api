@@ -1,65 +1,147 @@
 import authService from "../../src/services/auth.service";
 import { User } from "../../src/models/User";
+import bcrypt from "bcryptjs";
+import * as jwtUtils from "../../src/utils/jwt";
+
+jest.mock("../../src/models/User");
+jest.mock("bcryptjs");
+jest.mock("../../src/utils/jwt");
 
 describe("AuthService", () => {
-  beforeEach(async () => {
-    await User.deleteMany({});
+  const mockUser: any = {
+    _id: "user123",
+    email: "test@example.com",
+    password: "hashedPassword",
+    save: jest.fn(),
+  };
+
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
-  describe("signup", () => {
-    it("should create user and return token", async () => {
-      const result = await authService.signup({
-        name: "Service Test",
-        email: "service@test.com",
-        password: "password123",
-      });
+  /* ================= REGISTER ================= */
 
-      expect(result.user.email).toBe("service@test.com");
-      expect(result.token).toBeDefined();
+  it("should register new user", async () => {
+    (User.findOne as jest.Mock).mockResolvedValue(null);
+    (bcrypt.hash as jest.Mock).mockResolvedValue("hashedPassword");
+    (User.create as jest.Mock).mockResolvedValue(mockUser);
+
+    (jwtUtils.generateToken as jest.Mock).mockReturnValue("accessToken");
+    (jwtUtils.generateRefreshToken as jest.Mock).mockReturnValue(
+      "refreshToken",
+    );
+
+    const result = await authService.register({
+      email: "test@example.com",
+      password: "123456",
     });
 
-    it("should throw error if user exists", async () => {
-      await User.create({
-        name: "Test",
-        email: "exists@test.com",
-        password: "password123",
-      });
-
-      await expect(
-        authService.signup({
-          name: "Test",
-          email: "exists@test.com",
-          password: "password123",
-        }),
-      ).rejects.toThrow();
-    });
+    expect(result.accessToken).toBe("accessToken");
+    expect(result.refreshToken).toBe("refreshToken");
+    expect(result.user).toBe(mockUser);
   });
 
-  describe("login", () => {
-    beforeEach(async () => {
-      await User.create({
-        name: "Login User",
-        email: "login@test.com",
-        password: "password123",
-      });
+  it("should throw if user exists", async () => {
+    (User.findOne as jest.Mock).mockResolvedValue(mockUser);
+
+    await expect(
+      authService.register({
+        email: "test@example.com",
+        password: "123456",
+      }),
+    ).rejects.toThrow("User already exists");
+  });
+
+  /* ================= LOGIN ================= */
+
+  it("should login successfully", async () => {
+    (User.findOne as jest.Mock).mockResolvedValue(mockUser);
+    (bcrypt.compare as jest.Mock).mockResolvedValue(true);
+
+    (jwtUtils.generateToken as jest.Mock).mockReturnValue("accessToken");
+    (jwtUtils.generateRefreshToken as jest.Mock).mockReturnValue(
+      "refreshToken",
+    );
+
+    const result = await authService.login("test@example.com", "123");
+
+    expect(result.accessToken).toBe("accessToken");
+    expect(result.refreshToken).toBe("refreshToken");
+  });
+
+  it("should throw if user not found", async () => {
+    (User.findOne as jest.Mock).mockResolvedValue(null);
+
+    await expect(authService.login("a@a.com", "123")).rejects.toThrow(
+      "Invalid credentials",
+    );
+  });
+
+  it("should throw if password mismatch", async () => {
+    (User.findOne as jest.Mock).mockResolvedValue(mockUser);
+    (bcrypt.compare as jest.Mock).mockResolvedValue(false);
+
+    await expect(authService.login("a@a.com", "123")).rejects.toThrow(
+      "Invalid credentials",
+    );
+  });
+
+  /* ================= REFRESH TOKEN ================= */
+
+  it("should generate new access token", async () => {
+    (jwtUtils.verifyRefreshToken as jest.Mock).mockReturnValue({
+      userId: "user123",
     });
 
-    it("should login successfully", async () => {
-      const result = await authService.login("login@test.com", "password123");
+    (jwtUtils.generateToken as jest.Mock).mockReturnValue("newAccess");
 
-      expect(result.token).toBeDefined();
-    });
+    const result = await authService.refreshToken("refresh123");
 
-    it("should throw error for invalid email", async () => {
-      await expect(
-        authService.login("wrong@test.com", "password123"),
-      ).rejects.toThrow();
-    });
+    expect(result.accessToken).toBe("newAccess");
+  });
 
-    it("should throw error for wrong password", async () => {
-      await expect(
-        authService.login("login@test.com", "wrong"),
-      ).rejects.toThrow();
-    });
+  it("should throw if no refresh token", async () => {
+    await expect(authService.refreshToken("")).rejects.toThrow(
+      "Refresh token required",
+    );
+  });
+
+  /* ================= FORGOT PASSWORD ================= */
+
+  it("should generate reset token", async () => {
+    (User.findOne as jest.Mock).mockResolvedValue(mockUser);
+
+    const result = await authService.forgotPassword("test@example.com");
+
+    expect(mockUser.save).toHaveBeenCalled();
+    expect(result).toBe("Password reset token generated");
+  });
+
+  it("should throw if user not found", async () => {
+    (User.findOne as jest.Mock).mockResolvedValue(null);
+
+    await expect(authService.forgotPassword("x@x.com")).rejects.toThrow(
+      "User not found",
+    );
+  });
+
+  /* ================= RESET PASSWORD ================= */
+
+  it("should reset password successfully", async () => {
+    (User.findOne as jest.Mock).mockResolvedValue(mockUser);
+    (bcrypt.hash as jest.Mock).mockResolvedValue("newHash");
+
+    const result = await authService.resetPassword("token", "newpass");
+
+    expect(mockUser.save).toHaveBeenCalled();
+    expect(result).toBe("Password reset successful");
+  });
+
+  it("should throw if token invalid", async () => {
+    (User.findOne as jest.Mock).mockResolvedValue(null);
+
+    await expect(authService.resetPassword("bad", "123")).rejects.toThrow(
+      "Invalid or expired token",
+    );
   });
 });

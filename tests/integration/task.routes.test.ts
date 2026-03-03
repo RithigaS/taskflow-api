@@ -42,8 +42,8 @@ describe("Task Routes Integration", () => {
   it("should create task with valid data", async () => {
     const res = await request(app).post("/api/tasks").send({
       title: "Integration Task",
-      project: project._id,
-      createdBy: user._id,
+      projectId: project._id.toString(),
+      priority: "HIGH",
     });
 
     expect(res.statusCode).toBe(201);
