@@ -28,15 +28,15 @@ export const login = async (
   next: NextFunction,
 ) => {
   try {
-    const result = await authService.login(req.body.email, req.body.password);
-    res.json({
-      user: result.user,
-      token: result.accessToken,
+    const { email, password } = req.body;
+
+    const result = await authService.login(email, password);
+
+    return res.status(200).json({
+      token: result.accessToken, // ✅ matches your test
     });
-  } catch (error: any) {
-    res.status(error.statusCode || 500).json({
-      message: error.message,
-    });
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -48,7 +48,6 @@ export const refreshToken = async (
   next: NextFunction,
 ) => {
   try {
-    // SAFE extraction
     const token = req.body.refreshToken as string;
 
     const result = await authService.refreshToken(token);
