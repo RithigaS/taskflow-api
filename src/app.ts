@@ -1,18 +1,33 @@
-import express from "express";
-import healthRoutes from "./routes/health.routes";
-import taskRoutes from "./routes/task.routes";
-import { errorHandler } from "./middleware/errorHandler";
+import express, { Request, Response } from "express";
 import authRoutes from "./routes/auth.routes";
+import taskRoutes from "./routes/task.routes";
+import healthRoutes from "./routes/health.routes";
+import { createTaskValidator } from "./validators/task.validators";
+import { validateRequest } from "./middleware/validateRequest";
 
 const app = express();
 
 app.use(express.json());
 
-// ✅ VERY IMPORTANT
-app.use("/api/auth", authRoutes);
-app.use("/api", healthRoutes);
-app.use("/api/tasks", taskRoutes);
+/* ================= MAIN ROUTES ================= */
 
-app.use(errorHandler);
+// MUST match test paths exactly
+app.use("/api/auth", authRoutes);
+app.use("/api/tasks", taskRoutes);
+app.use("/api/health", healthRoutes);
+
+/* ================= TEST ROUTE FOR VALIDATOR ================= */
+
+app.post(
+  "/test",
+  createTaskValidator,
+  validateRequest,
+  (req: Request, res: Response) => {
+    res.status(200).json({
+      success: true,
+      body: req.body,
+    });
+  },
+);
 
 export default app;

@@ -3,7 +3,7 @@ import { generateToken } from "../../src/utils/jwt";
 
 describe("Auth Middleware", () => {
   it("should call next if token is valid", () => {
-    const token = generateToken("123");
+    const token = generateToken({ userId: "123" });
 
     const req: any = {
       headers: {

@@ -13,7 +13,9 @@ export const createTask = async (req: Request, res: Response) => {
       data: task,
     });
   } catch (error: any) {
-    res.status(500).json({
+    // 400 for validation errors
+    const statusCode = error.statusCode || 500;
+    res.status(statusCode).json({
       success: false,
       message: error.message,
     });
