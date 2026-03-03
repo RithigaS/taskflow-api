@@ -11,6 +11,13 @@ beforeAll(async () => {
   await mongoose.connect(uri);
 });
 
+afterEach(async () => {
+  if (mongoose.connection.readyState === 1) {
+    await mongoose.connection.db.dropDatabase();
+  }
+});
+
 afterAll(async () => {
-  await mongoose.connection.close();
+  await mongoose.disconnect();
+  await mongo.stop();
 });

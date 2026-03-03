@@ -35,7 +35,6 @@ class AuthService {
     };
   }
 
-  /* ================= LOGIN ================= */
   async login(email: string, password: string) {
     const user = await User.findOne({ email });
 
@@ -49,8 +48,8 @@ class AuthService {
       throw new AppError("Invalid credentials", 401);
     }
 
-    const accessToken = generateToken(user._id.toString());
-    const refreshToken = generateRefreshToken(user._id.toString());
+    const accessToken = generateToken({ userId: user._id.toString() });
+    const refreshToken = generateRefreshToken({ userId: user._id.toString() });
 
     return {
       user,
@@ -58,7 +57,6 @@ class AuthService {
       refreshToken,
     };
   }
-
   /* ================= REFRESH TOKEN ================= */
   async refreshToken(token: string) {
     if (!token) {
