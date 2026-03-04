@@ -1,23 +1,41 @@
 import { Request, Response } from "express";
 import * as taskService from "../services/task.service";
-import { Task, TaskStatus } from "../models/Task";
+import { TaskStatus } from "../models/Task";
 import * as fileService from "../services/file.service";
+import { getTasksOffset, getTasksCursor } from "../services/task.query.service";
 import fs from "fs";
 
-/* ================= CREATE ================= */
+// ✅ Socket emitter (Phase 7)
+import { getIO } from "../socket"; // change path if your socket file name differs
 
+/* ================= CREATE ================= */
 export const createTask = async (req: Request, res: Response) => {
   try {
     const task = await taskService.createTask(req.body);
 
-    res.status(201).json({
+    // ✅ Emit: task:created to project room (Phase 7)
+    try {
+      if ((task as any).projectId) {
+        getIO()
+          .to((task as any).projectId.toString())
+          .emit("task:created", {
+            taskId: (task as any)._id,
+            projectId: (task as any).projectId,
+            title: (task as any).title,
+            status: (task as any).status,
+          });
+      }
+    } catch {
+      // Don't crash API if socket isn't initialized (tests)
+    }
+
+    return res.status(201).json({
       success: true,
       data: task,
     });
   } catch (error: any) {
-    // 400 for validation errors
     const statusCode = error.statusCode || 500;
-    res.status(statusCode).json({
+    return res.status(statusCode).json({
       success: false,
       message: error.message,
     });
@@ -31,19 +49,40 @@ export const getTasksByProject = async (
 ) => {
   try {
     const { projectId } = req.params;
-
     const tasks = await taskService.getTasksByProject(projectId);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: tasks,
     });
   } catch (error: any) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: error.message,
     });
   }
+};
+
+/* ================= LIST TASKS (Pagination + Sorting + Filtering) ================= */
+export const listTasks = async (req: Request, res: Response) => {
+  const useCursor = Boolean(req.query.cursor);
+
+  const result = useCursor
+    ? await getTasksCursor(req.query)
+    : await getTasksOffset(req.query);
+
+  if ((result as any).status === 400) {
+    return res.status(400).json({
+      success: false,
+      message: (result as any).error,
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    data: (result as any).data,
+    meta: (result as any).meta,
+  });
 };
 
 /* ================= UPDATE ================= */
@@ -56,12 +95,25 @@ export const updateTask = async (
 
     const updatedTask = await taskService.updateTask(taskId, req.body);
 
-    res.status(200).json({
+    // ✅ Emit: task:updated
+    try {
+      if ((updatedTask as any).projectId) {
+        getIO()
+          .to((updatedTask as any).projectId.toString())
+          .emit("task:updated", {
+            taskId: (updatedTask as any)._id,
+            projectId: (updatedTask as any).projectId,
+            updates: req.body,
+          });
+      }
+    } catch {}
+
+    return res.status(200).json({
       success: true,
       data: updatedTask,
     });
   } catch (error: any) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: error.message,
     });
@@ -82,12 +134,25 @@ export const updateTaskStatus = async (
       status as TaskStatus,
     );
 
-    res.status(200).json({
+    // ✅ Emit: task:status-changed
+    try {
+      if ((updatedTask as any).projectId) {
+        getIO()
+          .to((updatedTask as any).projectId.toString())
+          .emit("task:status-changed", {
+            taskId: (updatedTask as any)._id,
+            projectId: (updatedTask as any).projectId,
+            status: (updatedTask as any).status,
+          });
+      }
+    } catch {}
+
+    return res.status(200).json({
       success: true,
       data: updatedTask,
     });
   } catch (error: any) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: error.message,
     });
@@ -104,32 +169,42 @@ export const deleteTask = async (
 
     await taskService.softDeleteTask(taskId);
 
-    res.status(200).json({
+    // ✅ Emit: task:updated (delete event optional)
+    try {
+      // You may want to include projectId, if your service returns it
+      getIO().emit("task:updated", { taskId, deleted: true });
+    } catch {}
+
+    return res.status(200).json({
       success: true,
       message: "Task deleted successfully",
     });
   } catch (error: any) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: error.message,
     });
   }
 };
-export const getAllTasks = async (req: Request, res: Response) => {
+
+/* ================= GET ALL (Protected route used in tests) ================= */
+export const getAllTasks = async (_req: Request, res: Response) => {
   try {
     const tasks = await taskService.getAllTasks();
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: tasks,
     });
   } catch (error: any) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: error.message,
     });
   }
 };
+
+/* ================= UPLOAD ATTACHMENT ================= */
 export const uploadAttachment = async (req: any, res: any) => {
   try {
     if (!req.file) {
@@ -141,18 +216,32 @@ export const uploadAttachment = async (req: any, res: any) => {
 
     const task = await fileService.addAttachment(req.params.id, req.file);
 
-    res.status(200).json({
+    // ✅ Emit: task:commented or task:updated (attachment behaves like update)
+    try {
+      if ((task as any).projectId) {
+        getIO()
+          .to((task as any).projectId.toString())
+          .emit("task:updated", {
+            taskId: (task as any)._id,
+            projectId: (task as any).projectId,
+            attachmentAdded: true,
+          });
+      }
+    } catch {}
+
+    return res.status(200).json({
       success: true,
       data: task,
     });
   } catch (err: any) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: err.message,
     });
   }
 };
 
+/* ================= DOWNLOAD ATTACHMENT ================= */
 export const downloadAttachment = async (req: any, res: any) => {
   try {
     const attachment = await fileService.getAttachment(
@@ -175,11 +264,11 @@ export const downloadAttachment = async (req: any, res: any) => {
     const stream = fs.createReadStream(attachment.path);
 
     stream.on("error", () => {
-      res.status(500).json({ message: "File stream error" });
+      return res.status(500).json({ message: "File stream error" });
     });
 
     stream.pipe(res);
   } catch (err: any) {
-    res.status(404).json({ message: err.message });
+    return res.status(404).json({ message: err.message });
   }
 };

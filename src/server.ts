@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 import app from "./app";
 
+import http from "http";
+
+import { initSocket } from "./socket";
 const PORT = 5000;
 
 mongoose
@@ -14,3 +17,10 @@ mongoose
   .catch(() => {
     console.error("error occured mongo db not connected");
   });
+
+const server = http.createServer(app);
+initSocket(server);
+
+server.listen(process.env.PORT || 3000, () => {
+  console.log("Server running");
+});
