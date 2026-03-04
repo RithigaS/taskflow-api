@@ -96,10 +96,10 @@ describe("Task Routes Integration", () => {
 
     const res = await request(app)
       .patch(`/api/tasks/${task._id}/status`)
-      .send({ status: "DONE" });
+      .send({ status: "done" });
 
     expect(res.statusCode).toBe(200);
-    expect(res.body.data.status).toBe("DONE");
+    expect(res.body.data.status).toBe("done");
   });
 
   // ================================

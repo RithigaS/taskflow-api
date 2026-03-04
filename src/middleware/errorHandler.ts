@@ -41,6 +41,23 @@ export const errorHandler = (
     message = "Invalid token";
   }
 
+  // ✅ Multer Errors (file upload)
+  if (err.name === "MulterError") {
+    statusCode = 400;
+
+    if (err.code === "LIMIT_FILE_SIZE") {
+      message = "File too large. Max size is 5MB";
+    } else {
+      message = err.message || "Upload failed";
+    }
+  }
+
+  // ✅ Custom fileFilter error (Invalid file type)
+  if (err.message === "Invalid file type") {
+    statusCode = 400;
+    message = "Invalid file type";
+  }
+
   res.status(statusCode).json({
     success: false,
     message,

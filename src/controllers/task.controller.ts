@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import * as taskService from "../services/task.service";
 import { Task, TaskStatus } from "../models/Task";
+import * as fileService from "../services/file.service";
+import fs from "fs";
 
 /* ================= CREATE ================= */
 
@@ -126,5 +128,58 @@ export const getAllTasks = async (req: Request, res: Response) => {
       success: false,
       message: error.message,
     });
+  }
+};
+export const uploadAttachment = async (req: any, res: any) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "No file uploaded",
+      });
+    }
+
+    const task = await fileService.addAttachment(req.params.id, req.file);
+
+    res.status(200).json({
+      success: true,
+      data: task,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+export const downloadAttachment = async (req: any, res: any) => {
+  try {
+    const attachment = await fileService.getAttachment(
+      req.params.id,
+      req.params.attachmentId,
+    );
+
+    if (!fs.existsSync(attachment.path)) {
+      return res.status(404).json({
+        message: "File not found",
+      });
+    }
+
+    res.setHeader("Content-Type", attachment.mimetype);
+    res.setHeader(
+      "Content-Disposition",
+      `attachment; filename="${attachment.filename}"`,
+    );
+
+    const stream = fs.createReadStream(attachment.path);
+
+    stream.on("error", () => {
+      res.status(500).json({ message: "File stream error" });
+    });
+
+    stream.pipe(res);
+  } catch (err: any) {
+    res.status(404).json({ message: err.message });
   }
 };

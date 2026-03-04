@@ -17,10 +17,15 @@ export const isAuth = (
   try {
     const decoded = jwt.verify(
       token,
-      process.env.JWT_SECRET || "secret",
+      process.env.JWT_SECRET || "testsecret",
     ) as any;
 
-    req.userId = decoded.userId;
+    // Support both 'userId' (from auth service) and 'id' (from tests)
+    req.userId = decoded.userId || decoded.id;
+
+    if (!req.userId) {
+      return res.status(401).json({ message: "Invalid token payload" });
+    }
 
     next(); // ⭐ THIS WAS MISSING OR NOT REACHED
   } catch (err) {

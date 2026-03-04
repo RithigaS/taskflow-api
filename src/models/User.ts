@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema<IUser>(
       enum: ["user", "admin"],
       default: "user",
     },
-    avatar: String,
+    avatar: { type: String, default: "" },
     resetToken: String,
     resetTokenExp: Date,
   },
