@@ -1,9 +1,9 @@
-import http from "http";
 import request from "supertest";
+import http from "http";
 import { io as Client } from "socket.io-client";
-import app from "../../src/app";
-import { initSocket } from "../../src/socket";
 import jwt from "jsonwebtoken";
+import app from "../../src/app";
+import { initIO } from "../../src/socket";
 
 describe("Socket task:created Integration Test", () => {
   let server: http.Server;
@@ -11,20 +11,17 @@ describe("Socket task:created Integration Test", () => {
 
   beforeAll((done) => {
     server = http.createServer(app);
-    initSocket(server);
+    initIO(server);
 
     server.listen(() => {
-      port = (server.address() as any).port;
+      const addr = server.address() as any;
+      port = addr.port;
       done();
     });
-  }, 60000);
+  });
 
   afterAll((done) => {
-    if (server) {
-      server.close(done);
-    } else {
-      done();
-    }
+    server.close(done);
   });
 
   it("socket client receives task:created after POST /api/tasks", (done) => {
@@ -33,41 +30,36 @@ describe("Socket task:created Integration Test", () => {
       process.env.JWT_SECRET || "testsecret",
     );
 
+    const projectId = "proj-1";
+
     const socket = Client(`http://localhost:${port}`, {
-      auth: { token },
       transports: ["websocket"],
-      timeout: 10000,
+      auth: { token },
+      query: { token }, // ✅ important for your server compatibility
     });
 
     const timeout = setTimeout(() => {
       socket.close();
       done(new Error("Test timed out waiting for task:created event"));
-    }, 25000);
+    }, 15000);
 
     socket.on("connect", async () => {
-      socket.on("task:created", (payload) => {
+      // ✅ join room (only if your server emits to project rooms)
+      socket.emit("join:project", projectId);
+
+      socket.on("task:created", (payload: any) => {
         clearTimeout(timeout);
-        expect(payload).toBeDefined();
+        expect(payload).toHaveProperty("_id");
         socket.close();
         done();
       });
 
-      try {
-        await request(app).post("/api/tasks").send({
-          title: "New Socket Task",
-          description: "Test",
-          status: "todo",
-        });
-      } catch (err) {
-        clearTimeout(timeout);
-        socket.close();
-        done(err);
-      }
-    });
-
-    socket.on("connect_error", (err) => {
-      clearTimeout(timeout);
-      done(err);
+      await request(app).post("/api/tasks").send({
+        title: "Socket Task",
+        description: "test",
+        status: "todo",
+        projectId,
+      });
     });
   });
 });

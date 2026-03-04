@@ -1,45 +1,47 @@
-import { Server, Socket } from "socket.io";
+import { Server as IOServer } from "socket.io";
+import http from "http";
 import jwt from "jsonwebtoken";
 
-let io: Server;
+let io: IOServer;
 
-/* ================= INIT SOCKET ================= */
-
-export const initSocket = (httpServer: any) => {
-  io = new Server(httpServer, {
+/**
+ * Initialize Socket.io
+ */
+export const initIO = (server: http.Server) => {
+  io = new IOServer(server, {
     cors: {
       origin: "*",
     },
   });
 
-  /* ===== AUTH MIDDLEWARE ===== */
-
-  io.use((socket: Socket, next) => {
-    const token =
-      socket.handshake.auth?.token || (socket.handshake.query?.token as string);
-
-    if (!token) {
-      return next(new Error("Unauthorized"));
-    }
-
+  io.use((socket, next) => {
     try {
-      const decoded: any = jwt.verify(
-        token,
-        process.env.JWT_SECRET || "testsecret",
-      );
+      const token =
+        socket.handshake.auth?.token || socket.handshake.query?.token;
 
-      socket.data.userId = decoded.userId || decoded.id;
+      if (!token) {
+        return next(new Error("Authentication error"));
+      }
+
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || "testsecret");
+
+      (socket as any).user = decoded;
 
       next();
-    } catch {
-      next(new Error("Unauthorized"));
+    } catch (err) {
+      next(new Error("Authentication error"));
     }
   });
 
-  /* ===== CONNECTION ===== */
-
-  io.on("connection", (socket: Socket) => {
+  io.on("connection", (socket) => {
     console.log("Socket connected:", socket.id);
+
+    /**
+     * join project room
+     */
+    socket.on("join:project", (projectId: string) => {
+      socket.join(`project:${projectId}`);
+    });
 
     socket.on("disconnect", () => {
       console.log("Socket disconnected:", socket.id);
@@ -49,11 +51,13 @@ export const initSocket = (httpServer: any) => {
   return io;
 };
 
-/* ================= GET SOCKET INSTANCE ================= */
-
+/**
+ * Access IO instance anywhere
+ */
 export const getIO = () => {
   if (!io) {
     throw new Error("Socket.io not initialized");
   }
+
   return io;
 };
