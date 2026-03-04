@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import authService from "../services/auth.service";
+import { upload } from "../middleware/upload.middleware";
+import { User } from "../models/User";
 
 /* ================= REGISTER ================= */
 
@@ -88,5 +90,29 @@ export const resetPassword = async (
     res.json({ message });
   } catch (err) {
     next(err);
+  }
+};
+
+export const uploadAvatar = async (req: any, res: any) => {
+  try {
+    const user = await User.findById(req.userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // if no file uploaded
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    // since we are using memoryStorage, store filename instead of path
+    user.avatar = req.file.originalname;
+
+    await user.save();
+
+    return res.json({ avatar: user.avatar });
+  } catch (err: any) {
+    return res.status(400).json({ message: err.message });
   }
 };

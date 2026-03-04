@@ -5,6 +5,8 @@ import healthRoutes from "./routes/health.routes";
 import { createTaskValidator } from "./validators/task.validators";
 import { validateRequest } from "./middleware/validateRequest";
 
+import projectRoutes from "./routes/project.routes";
+
 const app = express();
 
 app.use(express.json());
@@ -15,6 +17,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/health", healthRoutes);
+app.use("/api/projects", projectRoutes);
 
 /* ================= TEST ROUTE FOR VALIDATOR ================= */
 
