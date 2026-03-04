@@ -1,7 +1,7 @@
 // src/utils/jwt.ts
 import jwt from "jsonwebtoken";
 
-const JWT_SECRET = process.env.JWT_SECRET || "secret";
+const JWT_SECRET = process.env.JWT_SECRET || "testsecret";
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || "refresh_secret";
 
 export const generateToken = (payload: { userId: string }) => {
