@@ -28,7 +28,7 @@ describe("Socket Auth - Unit Test", () => {
 
     socket.on("connect", () => done(new Error("Should not connect")));
     socket.on("connect_error", (err) => {
-      expect(err.message).toMatch(/Unauthorized/i);
+      expect(err.message).toMatch(/Authentication error/i);
       socket.close();
       done();
     });

@@ -15,12 +15,12 @@ export const createTask = async (req: Request, res: Response) => {
 
     // ✅ Emit: task:created to project room (Phase 7)
     try {
-      if ((task as any).projectId) {
+      if ((task as any).project) {
         getIO()
-          .to((task as any).projectId.toString())
+          .to(`project:${(task as any).project.toString()}`)
           .emit("task:created", {
             taskId: (task as any)._id,
-            projectId: (task as any).projectId,
+            projectId: (task as any).project,
             title: (task as any).title,
             status: (task as any).status,
           });

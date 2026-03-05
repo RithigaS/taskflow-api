@@ -8,13 +8,15 @@ describe("Task Query Service", () => {
   describe("buildFilters", () => {
     it("should build filters with default deletedAt not exists", () => {
       const result = buildFilters({});
-      expect(result).toEqual({ deletedAt: { $exists: false } });
+      expect(result).toEqual({
+        $or: [{ deletedAt: null }, { deletedAt: { $exists: false } }],
+      });
     });
 
     it("should add projectId to filter when provided", () => {
       const result = buildFilters({ projectId: "proj123" });
       expect(result).toEqual({
-        deletedAt: { $exists: false },
+        $or: [{ deletedAt: null }, { deletedAt: { $exists: false } }],
         projectId: "proj123",
       });
     });
@@ -22,7 +24,7 @@ describe("Task Query Service", () => {
     it("should add status to filter when provided", () => {
       const result = buildFilters({ status: "todo" });
       expect(result).toEqual({
-        deletedAt: { $exists: false },
+        $or: [{ deletedAt: null }, { deletedAt: { $exists: false } }],
         status: "todo",
       });
     });
@@ -30,7 +32,7 @@ describe("Task Query Service", () => {
     it("should add multiple filters", () => {
       const result = buildFilters({ status: "todo", priority: "high" });
       expect(result).toEqual({
-        deletedAt: { $exists: false },
+        $or: [{ deletedAt: null }, { deletedAt: { $exists: false } }],
         status: "todo",
         priority: "high",
       });

@@ -12,7 +12,7 @@ describe("Socket emit - Unit Test", () => {
     jest.spyOn(taskService, "createTask").mockResolvedValue({
       _id: "t1",
       title: "Task",
-      projectId: "p1",
+      project: "p1",
     } as any);
 
     const req: any = { body: { title: "Task" } };
@@ -24,7 +24,7 @@ describe("Socket emit - Unit Test", () => {
     await createTask(req, res);
 
     // If your controller emits with project room:
-    // getIO().to(task.projectId).emit("task:created", task)
-    expect(to).toHaveBeenCalled();
+    // getIO().to(task.project).emit("task:created", task)
+    expect(to).toHaveBeenCalledWith("project:p1");
   });
 });

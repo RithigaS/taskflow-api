@@ -61,3 +61,6 @@ export const getIO = () => {
 
   return io;
 };
+
+// Alias for backward compatibility
+export const initSocket = initIO;

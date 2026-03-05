@@ -19,8 +19,6 @@ describe("AuthService", () => {
     jest.clearAllMocks();
   });
 
-  /* ================= REGISTER ================= */
-
   it("should register new user", async () => {
     (User.findOne as jest.Mock).mockResolvedValue(null);
     (bcrypt.hash as jest.Mock).mockResolvedValue("hashedPassword");
@@ -51,8 +49,6 @@ describe("AuthService", () => {
       }),
     ).rejects.toThrow("User already exists");
   });
-
-  /* ================= LOGIN ================= */
 
   it("should login successfully", async () => {
     (User.findOne as jest.Mock).mockResolvedValue(mockUser);
@@ -86,8 +82,6 @@ describe("AuthService", () => {
     );
   });
 
-  /* ================= REFRESH TOKEN ================= */
-
   it("should generate new access token", async () => {
     (jwtUtils.verifyRefreshToken as jest.Mock).mockReturnValue({
       userId: "user123",
@@ -106,8 +100,6 @@ describe("AuthService", () => {
     );
   });
 
-  /* ================= FORGOT PASSWORD ================= */
-
   it("should generate reset token", async () => {
     (User.findOne as jest.Mock).mockResolvedValue(mockUser);
 
@@ -124,8 +116,6 @@ describe("AuthService", () => {
       "User not found",
     );
   });
-
-  /* ================= RESET PASSWORD ================= */
 
   it("should reset password successfully", async () => {
     (User.findOne as jest.Mock).mockResolvedValue(mockUser);

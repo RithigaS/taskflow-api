@@ -1,9 +1,13 @@
 import request from "supertest";
 import http from "http";
-import { io as Client } from "socket.io-client";
 import jwt from "jsonwebtoken";
+import { io as Client, Socket } from "socket.io-client";
+
 import app from "../../src/app";
-import { initIO } from "../../src/socket";
+import { User } from "../../src/models/User";
+import { Project } from "../../src/models/Project";
+
+import { initSocket } from "../../src/socket";
 
 describe("Socket task:created Integration Test", () => {
   let server: http.Server;
@@ -11,11 +15,12 @@ describe("Socket task:created Integration Test", () => {
 
   beforeAll((done) => {
     server = http.createServer(app);
-    initIO(server);
 
-    server.listen(() => {
-      const addr = server.address() as any;
-      port = addr.port;
+    initSocket(server);
+
+    server.listen(0, () => {
+      const addr = server.address();
+      if (addr && typeof addr !== "string") port = addr.port;
       done();
     });
   });
@@ -25,41 +30,69 @@ describe("Socket task:created Integration Test", () => {
   });
 
   it("socket client receives task:created after POST /api/tasks", (done) => {
-    const token = jwt.sign(
-      { id: "user1", role: "user" },
-      process.env.JWT_SECRET || "testsecret",
-    );
+    (async () => {
+      const user = await User.create({
+        name: "Socket User",
+        email: "socketuser@test.com",
+        password: "Password123",
+        role: "user",
+      });
 
-    const projectId = "proj-1";
+      const project = await Project.create({
+        name: "Socket Project",
+        members: [user._id],
+      });
 
-    const socket = Client(`http://localhost:${port}`, {
-      transports: ["websocket"],
-      auth: { token },
-      query: { token }, // ✅ important for your server compatibility
-    });
+      const token = jwt.sign(
+        { id: user._id.toString(), role: user.role },
+        process.env.JWT_SECRET || "testsecret",
+      );
 
-    const timeout = setTimeout(() => {
-      socket.close();
-      done(new Error("Test timed out waiting for task:created event"));
-    }, 15000);
+      const socket: Socket = Client(`http://localhost:${port}`, {
+        transports: ["websocket"],
+        auth: { token },
+        forceNew: true,
+        reconnection: false,
+      });
 
-    socket.on("connect", async () => {
-      // ✅ join room (only if your server emits to project rooms)
-      socket.emit("join:project", projectId);
-
-      socket.on("task:created", (payload: any) => {
-        clearTimeout(timeout);
-        expect(payload).toHaveProperty("_id");
+      const timeout = setTimeout(() => {
         socket.close();
-        done();
+        done(new Error("Test timed out waiting for task:created event"));
+      }, 15000);
+
+      socket.on("connect_error", (err) => {
+        clearTimeout(timeout);
+        socket.close();
+        done(err);
       });
 
-      await request(app).post("/api/tasks").send({
-        title: "Socket Task",
-        description: "test",
-        status: "todo",
-        projectId,
+      socket.on("connect", async () => {
+        await new Promise((r) => setTimeout(r, 200));
+
+        socket.once("task:created", (payload: any) => {
+          clearTimeout(timeout);
+          socket.close();
+
+          expect(payload).toBeTruthy();
+          expect(payload.projectId?.toString()).toBe(project._id.toString());
+          expect(payload.title).toBe("Socket Task");
+
+          done();
+        });
+
+        const res = await request(app)
+          .post("/api/tasks")
+          .set("Authorization", `Bearer ${token}`)
+          .send({
+            title: "Socket Task",
+            description: "created to test socket",
+            status: "todo",
+            projectId: project._id.toString(),
+            createdBy: user._id.toString(),
+          });
+
+        expect([200, 201]).toContain(res.status);
       });
-    });
+    })().catch((e) => done(e));
   });
 });

@@ -23,7 +23,9 @@ type ServiceOk<T, M> = { status: 200; data: T; meta: M };
 type ServiceBad = { status: 400; error: string };
 
 export const buildFilters = (query: any) => {
-  const filter: any = { deletedAt: { $exists: false } };
+  const filter: any = {
+    $or: [{ deletedAt: null }, { deletedAt: { $exists: false } }],
+  };
 
   if (query.projectId) filter.projectId = query.projectId;
   if (query.status) filter.status = query.status;

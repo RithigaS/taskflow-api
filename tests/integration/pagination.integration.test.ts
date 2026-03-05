@@ -20,17 +20,14 @@ describe("Pagination Integration Tests", () => {
       description: "Pagination Test",
       status: "todo",
       priority: "low",
-      createdBy: user._id, // ✅ important (usually required)
-      deletedAt: null, // ✅ matches your filter logic
+      createdBy: user._id,
+      deletedAt: null,
     }));
 
     await Task.insertMany(tasks);
   });
 
   it("offset pagination returns correct slice (page=2, limit=5)", async () => {
-    // ⚠️ use the correct listing route you implemented:
-    // If your route is /api/tasks/list -> keep this.
-    // If your route is /api/tasks -> change accordingly.
     const res = await request(app).get("/api/tasks/list?page=2&limit=5");
 
     expect(res.status).toBe(200);
