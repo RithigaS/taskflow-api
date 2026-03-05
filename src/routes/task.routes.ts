@@ -19,6 +19,9 @@ router.post(
   taskController.createTask,
 );
 
+/* PUBLIC PAGINATION ROUTE - returns paginated tasks */
+router.get("/list", taskController.listTasks);
+
 router.get("/project/:projectId", taskController.getTasksByProject);
 router.put("/:taskId", taskController.updateTask);
 router.patch("/:taskId/status", taskController.updateTaskStatus);

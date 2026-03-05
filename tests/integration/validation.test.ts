@@ -60,6 +60,6 @@ describe("Validation Integration Tests", () => {
   // Invalid route returns 404 (not 409)
   it("should return 404 for invalid route", async () => {
     const res = await request(app).get("/invalid-route");
-    expect(res.status).toBe(404); // Express default for missing route
+    expect(res.status).toBe(404);
   });
 });

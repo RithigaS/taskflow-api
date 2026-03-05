@@ -9,7 +9,6 @@ describe("Task Routes Integration", () => {
   let user: any;
   let project: any;
 
-  // Create fresh user + project before each test
   beforeEach(async () => {
     user = await User.create({
       name: "Test User",
@@ -24,21 +23,16 @@ describe("Task Routes Integration", () => {
     });
   });
 
-  // Clean database after each test
   afterEach(async () => {
     await Task.deleteMany({});
     await User.deleteMany({});
     await Project.deleteMany({});
   });
 
-  // Close DB connection
   afterAll(async () => {
     await mongoose.connection.close();
   });
 
-  // ================================
-  // CREATE TASK
-  // ================================
   it("should create task with valid data", async () => {
     const res = await request(app).post("/api/tasks").send({
       title: "Integration Task",
@@ -50,9 +44,6 @@ describe("Task Routes Integration", () => {
     expect(res.body.data.title).toBe("Integration Task");
   });
 
-  // ================================
-  // GET TASKS BY PROJECT
-  // ================================
   it("should get tasks by project", async () => {
     await Task.create({
       title: "Project Task",
@@ -66,9 +57,6 @@ describe("Task Routes Integration", () => {
     expect(Array.isArray(res.body.data)).toBe(true);
   });
 
-  // ================================
-  // UPDATE TASK
-  // ================================
   it("should update task", async () => {
     const task = await Task.create({
       title: "Old Task",
@@ -84,9 +72,6 @@ describe("Task Routes Integration", () => {
     expect(res.body.data.title).toBe("Updated Task");
   });
 
-  // ================================
-  // UPDATE TASK STATUS
-  // ================================
   it("should update task status", async () => {
     const task = await Task.create({
       title: "Status Task",
@@ -102,9 +87,6 @@ describe("Task Routes Integration", () => {
     expect(res.body.data.status).toBe("done");
   });
 
-  // ================================
-  // SOFT DELETE TASK
-  // ================================
   it("should soft delete task", async () => {
     const task = await Task.create({
       title: "Delete Task",
