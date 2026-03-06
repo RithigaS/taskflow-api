@@ -1,4 +1,3 @@
-// src/services/task.query.service.ts
 import mongoose from "mongoose";
 import { Task } from "../models/Task";
 

@@ -41,7 +41,6 @@ export const errorHandler = (
     message = "Invalid token";
   }
 
-  // ✅ Multer Errors (file upload)
   if (err.name === "MulterError") {
     statusCode = 400;
 
@@ -52,7 +51,6 @@ export const errorHandler = (
     }
   }
 
-  // ✅ Custom fileFilter error (Invalid file type)
   if (err.message === "Invalid file type") {
     statusCode = 400;
     message = "Invalid file type";
