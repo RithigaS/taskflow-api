@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import authService from "../services/auth.service";
 import { User } from "../models/User";
 
-/* ================= REGISTER ================= */
+//register
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -20,7 +20,7 @@ export const register = async (req: Request, res: Response) => {
   }
 };
 
-/* ================= LOGIN ================= */
+//login
 
 export const login = async (
   req: Request,
@@ -39,7 +39,7 @@ export const login = async (
   }
 };
 
-/* ================= REFRESH TOKEN ================= */
+//refresh token
 
 export const refreshToken = async (
   req: Request,
@@ -55,7 +55,7 @@ export const refreshToken = async (
   }
 };
 
-/* ================= FORGOT PASSWORD ================= */
+//forget
 
 export const forgotPassword = async (
   req: Request,
@@ -70,7 +70,7 @@ export const forgotPassword = async (
   }
 };
 
-/* ================= RESET PASSWORD ================= */
+//reset password
 
 export const resetPassword = async (
   req: Request,
@@ -86,10 +86,9 @@ export const resetPassword = async (
   }
 };
 
-/* ================= UPLOAD AVATAR ================= */
+//upload avatar
 export const uploadAvatar = async (req: any, res: any) => {
   try {
-    // ✅ Step 3 requirement: handle missing file properly
     if (!req.file) {
       return res.status(400).json({ message: "No avatar uploaded" });
     }
@@ -99,14 +98,11 @@ export const uploadAvatar = async (req: any, res: any) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // In test environment (memoryStorage), there's no path or filename
-    // Use originalname as fallback to ensure avatar is always set
     const avatarPath =
       req.file.path || req.file.filename || req.file.originalname;
     user.avatar = avatarPath;
     await user.save();
 
-    // ✅ Always return avatar in response
     res.status(200).json({ avatar: user.avatar });
   } catch (err: any) {
     res.status(400).json({ message: err.message });

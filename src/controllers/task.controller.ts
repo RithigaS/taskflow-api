@@ -5,14 +5,12 @@ import * as fileService from "../services/file.service";
 import { getTasksOffset, getTasksCursor } from "../services/task.query.service";
 import fs from "fs";
 
-
-import { getIO } from "../socket"; 
+import { getIO } from "../socket";
 
 export const createTask = async (req: Request, res: Response) => {
   try {
     const task = await taskService.createTask(req.body);
 
-    
     try {
       if ((task as any).project) {
         getIO()
@@ -24,9 +22,7 @@ export const createTask = async (req: Request, res: Response) => {
             status: (task as any).status,
           });
       }
-    } catch {
-      
-    }
+    } catch {}
 
     return res.status(201).json({
       success: true,
@@ -60,7 +56,6 @@ export const getTasksByProject = async (
     });
   }
 };
-
 
 export const listTasks = async (req: Request, res: Response) => {
   const useCursor = Boolean(req.query.cursor);
@@ -116,7 +111,6 @@ export const updateTask = async (
   }
 };
 
-
 export const updateTaskStatus = async (
   req: Request<{ taskId: string }>,
   res: Response,
@@ -163,9 +157,7 @@ export const deleteTask = async (
 
     await taskService.softDeleteTask(taskId);
 
- 
     try {
-      
       getIO().emit("task:updated", { taskId, deleted: true });
     } catch {}
 
@@ -181,7 +173,6 @@ export const deleteTask = async (
   }
 };
 
-/* ================= GET ALL (Protected route used in tests) ================= */
 export const getAllTasks = async (_req: Request, res: Response) => {
   try {
     const tasks = await taskService.getAllTasks();
@@ -198,7 +189,6 @@ export const getAllTasks = async (_req: Request, res: Response) => {
   }
 };
 
-/* ================= UPLOAD ATTACHMENT ================= */
 export const uploadAttachment = async (req: any, res: any) => {
   try {
     if (!req.file) {
@@ -210,7 +200,6 @@ export const uploadAttachment = async (req: any, res: any) => {
 
     const task = await fileService.addAttachment(req.params.id, req.file);
 
-    // ✅ Emit: task:commented or task:updated (attachment behaves like update)
     try {
       if ((task as any).projectId) {
         getIO()
@@ -234,8 +223,6 @@ export const uploadAttachment = async (req: any, res: any) => {
     });
   }
 };
-
-/* ================= DOWNLOAD ATTACHMENT ================= */
 export const downloadAttachment = async (req: any, res: any) => {
   try {
     const attachment = await fileService.getAttachment(
