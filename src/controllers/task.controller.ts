@@ -5,15 +5,14 @@ import * as fileService from "../services/file.service";
 import { getTasksOffset, getTasksCursor } from "../services/task.query.service";
 import fs from "fs";
 
-// ✅ Socket emitter (Phase 7)
-import { getIO } from "../socket"; // change path if your socket file name differs
 
-/* ================= CREATE ================= */
+import { getIO } from "../socket"; 
+
 export const createTask = async (req: Request, res: Response) => {
   try {
     const task = await taskService.createTask(req.body);
 
-    // ✅ Emit: task:created to project room (Phase 7)
+    
     try {
       if ((task as any).project) {
         getIO()
@@ -26,7 +25,7 @@ export const createTask = async (req: Request, res: Response) => {
           });
       }
     } catch {
-      // Don't crash API if socket isn't initialized (tests)
+      
     }
 
     return res.status(201).json({
@@ -42,7 +41,6 @@ export const createTask = async (req: Request, res: Response) => {
   }
 };
 
-/* ================= GET BY PROJECT ================= */
 export const getTasksByProject = async (
   req: Request<{ projectId: string }>,
   res: Response,
@@ -63,7 +61,7 @@ export const getTasksByProject = async (
   }
 };
 
-/* ================= LIST TASKS (Pagination + Sorting + Filtering) ================= */
+
 export const listTasks = async (req: Request, res: Response) => {
   const useCursor = Boolean(req.query.cursor);
 
@@ -85,7 +83,6 @@ export const listTasks = async (req: Request, res: Response) => {
   });
 };
 
-/* ================= UPDATE ================= */
 export const updateTask = async (
   req: Request<{ taskId: string }>,
   res: Response,
@@ -95,7 +92,6 @@ export const updateTask = async (
 
     const updatedTask = await taskService.updateTask(taskId, req.body);
 
-    // ✅ Emit: task:updated
     try {
       if ((updatedTask as any).projectId) {
         getIO()
@@ -120,7 +116,7 @@ export const updateTask = async (
   }
 };
 
-/* ================= UPDATE STATUS ================= */
+
 export const updateTaskStatus = async (
   req: Request<{ taskId: string }>,
   res: Response,
@@ -134,7 +130,6 @@ export const updateTaskStatus = async (
       status as TaskStatus,
     );
 
-    // ✅ Emit: task:status-changed
     try {
       if ((updatedTask as any).projectId) {
         getIO()
@@ -159,7 +154,6 @@ export const updateTaskStatus = async (
   }
 };
 
-/* ================= DELETE ================= */
 export const deleteTask = async (
   req: Request<{ taskId: string }>,
   res: Response,
@@ -169,9 +163,9 @@ export const deleteTask = async (
 
     await taskService.softDeleteTask(taskId);
 
-    // ✅ Emit: task:updated (delete event optional)
+ 
     try {
-      // You may want to include projectId, if your service returns it
+      
       getIO().emit("task:updated", { taskId, deleted: true });
     } catch {}
 
