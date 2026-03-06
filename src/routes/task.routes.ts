@@ -9,9 +9,41 @@ import { createTaskValidator } from "../validators/task.validators";
 const router = Router();
 
 /* PROTECTED ROUTE (used only for auth tests) */
+/**
+ * @swagger
+ * /api/tasks:
+ *   get:
+ *     summary: Get all tasks
+ *     tags: [Tasks]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of tasks
+ */
 router.get("/", isAuth, taskController.getAllTasks);
 
-/* PUBLIC ROUTES (used by integration tests) - with validation */
+/**
+ * @swagger
+ * /api/tasks:
+ *   post:
+ *     summary: Create a task
+ *     tags: [Tasks]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               priority:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Task created
+ */
 router.post(
   "/",
   createTaskValidator,
@@ -28,6 +60,36 @@ router.patch("/:taskId/status", taskController.updateTaskStatus);
 router.delete("/:taskId", taskController.deleteTask);
 
 /* FILE UPLOAD ROUTES */
+
+/**
+ * @swagger
+ * /api/tasks/{id}/attachments:
+ *   post:
+ *     summary: Upload attachment to a task
+ *     tags: [Tasks]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Task ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               file:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: File uploaded
+ */
 router.post(
   "/:id/attachments",
   isAuth,

@@ -1,93 +1,463 @@
-# grootan-nodeandtesting-exercise-rithiga
+# TaskFlow API
 
+TaskFlow API is a production-grade task management REST API built using **Node.js, Express, TypeScript, MongoDB, and JWT authentication**.  
+This project was developed as part of the **Grootan Technologies Internal Training Program**.
 
+The goal of this project is to design a scalable backend system with proper architecture, validation, authentication, testing, file handling, real-time communication, and production readiness.
 
-## Getting started
+---
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+# Project Overview
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+TaskFlow API allows users to:
 
-## Add your files
+- Register and login securely
+- Create and manage projects
+- Create and manage tasks
+- Upload task attachments
+- Generate project reports (PDF & CSV)
+- Receive real-time task notifications
+- Send email notifications
+- Access API documentation through Swagger
 
-* [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+The project follows a **clean MVC + Service Layer architecture** and includes **comprehensive unit and integration tests**.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.grootan.com/interns-2026/grootan-nodeandtesting-exercise-rithiga.git
-git branch -M master
-git push -uf origin master
-```
+---
 
-## Integrate with your tools
+# Tech Stack
 
-* [Set up project integrations](https://gitlab.grootan.com/interns-2026/grootan-nodeandtesting-exercise-rithiga/-/settings/integrations)
+### Backend
 
-## Collaborate with your team
+- Node.js
+- Express.js
+- TypeScript
 
-* [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+### Database
 
-## Test and Deploy
+- MongoDB
+- Mongoose
 
-Use the built-in continuous integration in GitLab.
+### Authentication & Security
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+- JWT (jsonwebtoken)
+- bcryptjs
+- helmet
+- cors
+- express-rate-limit
 
-***
+### File Handling
 
-# Editing this README
+- multer
+- PDFKit
+- CSV export
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+### Email & Real-time
 
-## Suggestions for a good README
+- nodemailer
+- socket.io
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+### Testing
 
-## Name
-Choose a self-explaining name for your project.
+- Jest
+- ts-jest
+- supertest
+- mongodb-memory-server
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+### Documentation
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+- swagger-jsdoc
+- swagger-ui-express
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+---
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+# Project Architecture
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+The project follows a **modular folder structure**.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+# TaskFlow API
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+TaskFlow API is a production-grade task management REST API built using **Node.js, Express, TypeScript, MongoDB, and JWT authentication**.  
+This project was developed as part of the **Grootan Technologies Internal Training Program**.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+The goal of this project is to design a scalable backend system with proper architecture, validation, authentication, testing, file handling, real-time communication, and production readiness.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+---
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+# Project Overview
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+TaskFlow API allows users to:
 
-## License
-For open source projects, say how it is licensed.
+- Register and login securely
+- Create and manage projects
+- Create and manage tasks
+- Upload task attachments
+- Generate project reports (PDF & CSV)
+- Receive real-time task notifications
+- Send email notifications
+- Access API documentation through Swagger
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+The project follows a **clean MVC + Service Layer architecture** and includes **comprehensive unit and integration tests**.
+
+---
+
+# Tech Stack
+
+### Backend
+
+- Node.js
+- Express.js
+- TypeScript
+
+### Database
+
+- MongoDB
+- Mongoose
+
+### Authentication & Security
+
+- JWT (jsonwebtoken)
+- bcryptjs
+- helmet
+- cors
+- express-rate-limit
+
+### File Handling
+
+- multer
+- PDFKit
+- CSV export
+
+### Email & Real-time
+
+- nodemailer
+- socket.io
+
+### Testing
+
+- Jest
+- ts-jest
+- supertest
+- mongodb-memory-server
+
+### Documentation
+
+- swagger-jsdoc
+- swagger-ui-express
+
+---
+
+# Project Architecture
+
+The project follows a **modular folder structure**.
+
+src/
+├── controllers
+├── middleware
+├── models
+├── routes
+├── services
+├── utils
+├── validators
+├── socket
+├── app.ts
+└── server.ts
+
+tests/
+├── unit
+└── integration
+
+Controllers handle requests, services contain business logic, and models define database schemas.
+
+---
+
+# Screenshots
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+---
+
+# Phase-wise Implementation
+
+The project was implemented in **8 phases**.
+
+---
+
+# Phase 1 – Project Foundation & Express Setup
+
+In this phase, the base structure of the application was created.
+
+Key tasks completed:
+
+- Node.js + TypeScript project setup
+- Express server configuration
+- Jest testing setup
+- MongoMemoryServer for test database
+- MVC folder structure
+- Health check endpoint
+
+Example endpoint:
+
+GET /api/health
+
+This endpoint returns server status, timestamp, and uptime.
+
+---
+
+# Phase 2 – Database Models
+
+In this phase, MongoDB schemas were designed.
+
+Models implemented:
+
+- **User**
+- **Task**
+- **Project**
+- **Comment**
+
+Key features:
+
+- password hashing using bcrypt
+- email validation
+- task status and priority fields
+- project-member relationships
+- threaded comments
+
+---
+
+# Phase 3 – REST API CRUD Endpoints
+
+This phase introduced complete REST API functionality.
+
+Endpoints implemented:
+
+- Create task
+- Get tasks
+- Update task
+- Delete task
+- Create project
+- Add comments
+
+Example endpoint:
+
+POST /api/tasks
+
+The service layer handles business logic while controllers manage requests.
+
+---
+
+# Phase 4 – Authentication & Authorization
+
+Authentication system was implemented using JWT.
+
+Endpoints:
+
+POST /api/auth/signup
+POST /api/auth/login
+POST /api/auth/refresh
+POST /api/auth/forgot-password
+POST /api/auth/reset-password
+
+Features:
+
+- password hashing
+- JWT access tokens
+- refresh tokens
+- protected routes
+- password reset flow
+
+---
+
+# Phase 5 – Validation & Error Handling
+
+This phase focuses on application reliability.
+
+Features added:
+
+- request validation using express-validator
+- input sanitization
+- custom error class
+- centralized error handling middleware
+- proper HTTP status codes
+
+Example validations:
+
+- title length validation
+- email format validation
+- future date validation
+- ObjectId validation
+
+---
+
+# Phase 6 – File Upload & Report Generation
+
+This phase added file management and reporting features.
+
+Features implemented:
+
+- task attachment upload
+- attachment download
+- user avatar upload
+- project report generation (PDF)
+- task export as CSV
+
+Libraries used:
+
+- multer
+- PDFKit
+
+Example endpoint:
+
+POST /api/tasks/:id/attachments
+
+---
+
+# Phase 7 – Pagination & Real-time Notifications
+
+Advanced querying and real-time updates were introduced.
+
+Pagination types:
+
+- Offset pagination (page, limit)
+- Cursor pagination
+
+Real-time features:
+
+- Socket.io integration
+- authenticated socket connections
+- project-based rooms
+
+Events implemented:
+
+- task created
+- task updated
+- task status changed
+
+---
+
+# Phase 8 – Email Notifications & Production Readiness
+
+This phase prepared the application for production.
+
+Email notifications implemented:
+
+- welcome email on signup
+- password reset email
+- task assignment notification
+- daily overdue task digest
+
+Production improvements:
+
+- request logging
+- compression middleware
+- rate limiting
+- request ID tracking
+- environment-based configuration
+
+---
+
+# Bonus Challenge – Swagger API Documentation
+
+Swagger documentation was integrated.
+
+Features:
+
+- interactive API documentation
+- request/response schema definitions
+- authentication support in Swagger UI
+
+Access documentation at:
+
+/api-docs
+
+Example:
+
+http://localhost:5000/api-docs
+
+---
+
+# Installation
+
+Clone the repository.
+
+git clone <repository-url>
+cd task3
+
+Install dependencies.
+
+npm install
+
+---
+
+# Environment Variables
+
+Create a `.env` file in the root directory.
+
+Example:
+
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret
+JWT_REFRESH_SECRET=your_refresh_secret
+
+---
+
+# Running the Application
+
+Start the development server.
+
+npm run dev
+
+Build the project.
+
+npm run build
+
+Run production server.
+
+npm start
+
+---
+
+# Running Tests
+
+Run the test suite.
+
+npm test
+
+The test suite includes:
+
+- unit tests
+- integration tests
+- coverage reports
+
+Coverage goal:
+
+80%+
+
+---
+
+# Demo Features
+
+The application can demonstrate:
+
+1. User signup and login
+2. Project and task creation
+3. Input validation and error responses
+4. File upload and download
+5. Project PDF report generation
+6. Real-time notifications with Socket.io
+7. Running test suite with coverage
+8. Swagger API documentation
+
+---
+
+# Author
+
+Developed as part of the **Grootan Technologies Internal Training Program**.
+
+---
+
+# License
+
+This project is intended for learning and evaluation purposes.
