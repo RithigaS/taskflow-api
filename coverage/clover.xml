@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1772771247664" clover="3.2.0">
-  <project timestamp="1772771247664" name="All files">
-    <metrics statements="594" coveredstatements="526" conditionals="206" coveredconditionals="164" methods="93" coveredmethods="81" elements="893" coveredelements="771" complexity="0" loc="594" ncloc="594" packages="9" files="35" classes="35"/>
+<coverage generated="1772772866705" clover="3.2.0">
+  <project timestamp="1772772866705" name="All files">
+    <metrics statements="596" coveredstatements="532" conditionals="206" coveredconditionals="161" methods="95" coveredmethods="84" elements="897" coveredelements="777" complexity="0" loc="596" ncloc="596" packages="9" files="35" classes="35"/>
     <package name="src">
-      <metrics statements="51" coveredstatements="48" conditionals="8" coveredconditionals="7" methods="7" coveredmethods="6"/>
+      <metrics statements="51" coveredstatements="41" conditionals="8" coveredconditionals="4" methods="7" coveredmethods="4"/>
       <file name="app.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\app.ts">
         <metrics statements="26" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="16" type="stmt"/>
-        <line num="2" count="16" type="stmt"/>
-        <line num="3" count="16" type="stmt"/>
-        <line num="4" count="16" type="stmt"/>
-        <line num="5" count="16" type="stmt"/>
-        <line num="6" count="16" type="stmt"/>
-        <line num="7" count="16" type="stmt"/>
-        <line num="8" count="16" type="stmt"/>
-        <line num="9" count="16" type="stmt"/>
-        <line num="10" count="16" type="stmt"/>
-        <line num="11" count="16" type="stmt"/>
-        <line num="12" count="16" type="stmt"/>
-        <line num="14" count="16" type="stmt"/>
-        <line num="16" count="16" type="stmt"/>
-        <line num="17" count="16" type="stmt"/>
-        <line num="18" count="16" type="stmt"/>
-        <line num="19" count="16" type="stmt"/>
-        <line num="20" count="16" type="stmt"/>
-        <line num="24" count="16" type="stmt"/>
-        <line num="25" count="16" type="stmt"/>
-        <line num="26" count="16" type="stmt"/>
-        <line num="27" count="16" type="stmt"/>
-        <line num="28" count="16" type="stmt"/>
-        <line num="32" count="16" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
-        <line num="44" count="16" type="stmt"/>
+        <line num="1" count="14" type="stmt"/>
+        <line num="2" count="14" type="stmt"/>
+        <line num="3" count="14" type="stmt"/>
+        <line num="4" count="14" type="stmt"/>
+        <line num="5" count="14" type="stmt"/>
+        <line num="6" count="14" type="stmt"/>
+        <line num="7" count="14" type="stmt"/>
+        <line num="8" count="14" type="stmt"/>
+        <line num="9" count="14" type="stmt"/>
+        <line num="10" count="14" type="stmt"/>
+        <line num="11" count="14" type="stmt"/>
+        <line num="12" count="14" type="stmt"/>
+        <line num="14" count="14" type="stmt"/>
+        <line num="16" count="14" type="stmt"/>
+        <line num="17" count="14" type="stmt"/>
+        <line num="18" count="14" type="stmt"/>
+        <line num="19" count="14" type="stmt"/>
+        <line num="20" count="14" type="stmt"/>
+        <line num="24" count="14" type="stmt"/>
+        <line num="25" count="14" type="stmt"/>
+        <line num="26" count="14" type="stmt"/>
+        <line num="27" count="14" type="stmt"/>
+        <line num="28" count="14" type="stmt"/>
+        <line num="32" count="14" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="44" count="14" type="stmt"/>
       </file>
       <file name="socket.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\socket.ts">
-        <metrics statements="25" coveredstatements="22" conditionals="8" coveredconditionals="7" methods="6" coveredmethods="5"/>
-        <line num="1" count="18" type="stmt"/>
-        <line num="3" count="18" type="stmt"/>
-        <line num="10" count="18" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
-        <line num="18" count="2" type="stmt"/>
-        <line num="20" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="22" count="2" type="cond" truecount="2" falsecount="0"/>
+        <metrics statements="25" coveredstatements="15" conditionals="8" coveredconditionals="4" methods="6" coveredmethods="3"/>
+        <line num="1" count="16" type="stmt"/>
+        <line num="3" count="16" type="stmt"/>
+        <line num="10" count="16" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="23" count="1" type="stmt"/>
-        <line num="26" count="1" type="cond" truecount="2" falsecount="0"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
+        <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
-        <line num="36" count="2" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
-        <line num="47" count="1" type="stmt"/>
-        <line num="51" count="2" type="stmt"/>
-        <line num="57" count="18" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="57" count="16" type="stmt"/>
         <line num="58" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="59" count="1" type="stmt"/>
         <line num="62" count="0" type="stmt"/>
-        <line num="66" count="18" type="stmt"/>
+        <line num="66" count="16" type="stmt"/>
       </file>
     </package>
     <package name="src.config">
@@ -76,41 +76,41 @@
       </file>
     </package>
     <package name="src.controllers">
-      <metrics statements="123" coveredstatements="82" conditionals="27" coveredconditionals="14" methods="16" coveredmethods="11"/>
+      <metrics statements="123" coveredstatements="93" conditionals="27" coveredconditionals="14" methods="16" coveredmethods="14"/>
       <file name="auth.controller.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\controllers\auth.controller.ts">
-        <metrics statements="43" coveredstatements="26" conditionals="9" coveredconditionals="6" methods="6" coveredmethods="3"/>
-        <line num="2" count="16" type="stmt"/>
-        <line num="3" count="16" type="stmt"/>
-        <line num="7" count="16" type="stmt"/>
+        <metrics statements="43" coveredstatements="37" conditionals="9" coveredconditionals="6" methods="6" coveredmethods="6"/>
+        <line num="2" count="14" type="stmt"/>
+        <line num="3" count="14" type="stmt"/>
+        <line num="7" count="14" type="stmt"/>
         <line num="8" count="5" type="stmt"/>
         <line num="9" count="5" type="stmt"/>
         <line num="10" count="5" type="stmt"/>
         <line num="12" count="3" type="stmt"/>
         <line num="17" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="25" count="16" type="stmt"/>
-        <line num="30" count="5" type="stmt"/>
-        <line num="31" count="5" type="stmt"/>
-        <line num="32" count="5" type="stmt"/>
+        <line num="25" count="14" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="32" count="3" type="stmt"/>
         <line num="34" count="1" type="stmt"/>
-        <line num="38" count="4" type="stmt"/>
-        <line num="44" count="16" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="44" count="14" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
         <line num="54" count="0" type="stmt"/>
-        <line num="60" count="16" type="stmt"/>
-        <line num="65" count="0" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
+        <line num="60" count="14" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
-        <line num="69" count="0" type="stmt"/>
-        <line num="75" count="16" type="stmt"/>
-        <line num="80" count="0" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="75" count="14" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
+        <line num="81" count="1" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
         <line num="83" count="0" type="stmt"/>
-        <line num="85" count="0" type="stmt"/>
-        <line num="90" count="16" type="stmt"/>
+        <line num="85" count="1" type="stmt"/>
+        <line num="90" count="14" type="stmt"/>
         <line num="91" count="1" type="stmt"/>
         <line num="93" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="94" count="0" type="stmt"/>
@@ -125,12 +125,12 @@
       </file>
       <file name="task.controller.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\controllers\task.controller.ts">
         <metrics statements="80" coveredstatements="56" conditionals="18" coveredconditionals="8" methods="10" coveredmethods="8"/>
-        <line num="2" count="17" type="stmt"/>
-        <line num="4" count="17" type="stmt"/>
-        <line num="5" count="17" type="stmt"/>
-        <line num="6" count="17" type="stmt"/>
-        <line num="9" count="17" type="stmt"/>
-        <line num="11" count="17" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
+        <line num="6" count="15" type="stmt"/>
+        <line num="9" count="15" type="stmt"/>
+        <line num="11" count="15" type="stmt"/>
         <line num="12" count="3" type="stmt"/>
         <line num="13" count="3" type="stmt"/>
         <line num="16" count="3" type="stmt"/>
@@ -139,19 +139,19 @@
         <line num="31" count="3" type="stmt"/>
         <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="37" count="0" type="stmt"/>
-        <line num="44" count="17" type="stmt"/>
+        <line num="44" count="15" type="stmt"/>
         <line num="48" count="1" type="stmt"/>
         <line num="49" count="1" type="stmt"/>
         <line num="50" count="1" type="stmt"/>
         <line num="52" count="1" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
-        <line num="65" count="17" type="stmt"/>
+        <line num="65" count="15" type="stmt"/>
         <line num="66" count="1" type="stmt"/>
         <line num="68" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="72" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="73" count="0" type="stmt"/>
         <line num="79" count="1" type="stmt"/>
-        <line num="86" count="17" type="stmt"/>
+        <line num="86" count="15" type="stmt"/>
         <line num="90" count="1" type="stmt"/>
         <line num="91" count="1" type="stmt"/>
         <line num="93" count="1" type="stmt"/>
@@ -160,7 +160,7 @@
         <line num="97" count="0" type="stmt"/>
         <line num="107" count="1" type="stmt"/>
         <line num="112" count="0" type="stmt"/>
-        <line num="120" count="17" type="stmt"/>
+        <line num="120" count="15" type="stmt"/>
         <line num="124" count="1" type="stmt"/>
         <line num="125" count="1" type="stmt"/>
         <line num="126" count="1" type="stmt"/>
@@ -170,7 +170,7 @@
         <line num="135" count="0" type="stmt"/>
         <line num="145" count="1" type="stmt"/>
         <line num="150" count="0" type="stmt"/>
-        <line num="157" count="17" type="stmt"/>
+        <line num="157" count="15" type="stmt"/>
         <line num="161" count="1" type="stmt"/>
         <line num="162" count="1" type="stmt"/>
         <line num="164" count="1" type="stmt"/>
@@ -178,12 +178,12 @@
         <line num="169" count="1" type="stmt"/>
         <line num="172" count="1" type="stmt"/>
         <line num="177" count="0" type="stmt"/>
-        <line num="185" count="17" type="stmt"/>
+        <line num="185" count="15" type="stmt"/>
         <line num="186" count="2" type="stmt"/>
         <line num="187" count="2" type="stmt"/>
         <line num="189" count="2" type="stmt"/>
         <line num="194" count="0" type="stmt"/>
-        <line num="202" count="17" type="stmt"/>
+        <line num="202" count="15" type="stmt"/>
         <line num="203" count="1" type="stmt"/>
         <line num="204" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="205" count="0" type="stmt"/>
@@ -193,7 +193,7 @@
         <line num="216" count="0" type="stmt"/>
         <line num="226" count="1" type="stmt"/>
         <line num="231" count="0" type="stmt"/>
-        <line num="239" count="17" type="stmt"/>
+        <line num="239" count="15" type="stmt"/>
         <line num="240" count="0" type="stmt"/>
         <line num="241" count="0" type="stmt"/>
         <line num="246" count="0" type="cond" truecount="0" falsecount="2"/>
@@ -208,11 +208,11 @@
       </file>
     </package>
     <package name="src.middleware">
-      <metrics statements="83" coveredstatements="77" conditionals="48" coveredconditionals="39" methods="11" coveredmethods="9"/>
+      <metrics statements="85" coveredstatements="79" conditionals="48" coveredconditionals="39" methods="13" coveredmethods="11"/>
       <file name="auth.middleware.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\middleware\auth.middleware.ts">
         <metrics statements="13" coveredstatements="12" conditionals="8" coveredconditionals="7" methods="1" coveredmethods="1"/>
-        <line num="2" count="17" type="stmt"/>
-        <line num="4" count="17" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
         <line num="9" count="12" type="stmt"/>
         <line num="11" count="12" type="cond" truecount="2" falsecount="0"/>
         <line num="12" count="5" type="stmt"/>
@@ -259,34 +259,36 @@
       </file>
       <file name="logger.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\middleware\logger.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="16" type="stmt"/>
-        <line num="3" count="16" type="stmt"/>
+        <line num="1" count="14" type="stmt"/>
+        <line num="3" count="14" type="stmt"/>
       </file>
       <file name="multerWrapper.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\middleware\multerWrapper.ts">
         <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
-        <line num="2" count="17" type="stmt"/>
-        <line num="7" count="17" type="stmt"/>
-        <line num="8" count="34" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="7" count="15" type="stmt"/>
+        <line num="8" count="30" type="stmt"/>
         <line num="9" count="4" type="stmt"/>
         <line num="10" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="11" count="1" type="stmt"/>
         <line num="16" count="3" type="stmt"/>
       </file>
       <file name="rateLimit.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\middleware\rateLimit.ts">
-        <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="2" methods="0" coveredmethods="0"/>
-        <line num="1" count="16" type="stmt"/>
-        <line num="3" count="16" type="stmt"/>
-        <line num="5" count="16" type="stmt"/>
-        <line num="12" count="16" type="stmt"/>
+        <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="1" count="14" type="stmt"/>
+        <line num="3" count="14" type="stmt"/>
+        <line num="6" count="14" type="stmt"/>
+        <line num="11" count="41" type="stmt"/>
+        <line num="14" count="14" type="stmt"/>
+        <line num="19" count="13" type="stmt"/>
       </file>
       <file name="requestId.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\middleware\requestId.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="2" count="17" type="stmt"/>
-        <line num="4" count="17" type="stmt"/>
-        <line num="9" count="48" type="stmt"/>
-        <line num="11" count="48" type="stmt"/>
-        <line num="12" count="48" type="stmt"/>
-        <line num="14" count="48" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="9" count="42" type="stmt"/>
+        <line num="11" count="42" type="stmt"/>
+        <line num="12" count="42" type="stmt"/>
+        <line num="14" count="42" type="stmt"/>
       </file>
       <file name="role.middleware.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\middleware\role.middleware.ts">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
@@ -297,154 +299,154 @@
       </file>
       <file name="upload.middleware.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\middleware\upload.middleware.ts">
         <metrics statements="11" coveredstatements="7" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="0"/>
-        <line num="1" count="17" type="stmt"/>
-        <line num="2" count="17" type="stmt"/>
-        <line num="3" count="17" type="stmt"/>
-        <line num="5" count="17" type="stmt"/>
-        <line num="7" count="17" type="cond" truecount="1" falsecount="1"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="3" count="15" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
+        <line num="7" count="15" type="cond" truecount="1" falsecount="1"/>
         <line num="8" count="0" type="stmt"/>
-        <line num="13" count="17" type="cond" truecount="1" falsecount="1"/>
+        <line num="13" count="15" type="cond" truecount="1" falsecount="1"/>
         <line num="17" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="25" count="17" type="stmt"/>
+        <line num="25" count="15" type="stmt"/>
       </file>
       <file name="validateRequest.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\middleware\validateRequest.ts">
         <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
-        <line num="2" count="17" type="stmt"/>
-        <line num="3" count="17" type="stmt"/>
-        <line num="5" count="17" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="3" count="15" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
         <line num="10" count="11" type="stmt"/>
         <line num="11" count="11" type="cond" truecount="2" falsecount="0"/>
-        <line num="12" count="7" type="stmt"/>
-        <line num="14" count="4" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
       </file>
     </package>
     <package name="src.models">
       <metrics statements="29" coveredstatements="29" conditionals="10" coveredconditionals="10" methods="4" coveredmethods="4"/>
       <file name="Project.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\models\Project.ts">
         <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
-        <line num="1" count="17" type="stmt"/>
-        <line num="11" count="17" type="stmt"/>
-        <line num="44" count="17" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="11" count="15" type="stmt"/>
+        <line num="44" count="15" type="stmt"/>
       </file>
       <file name="Task.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\models\Task.ts">
         <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
-        <line num="1" count="24" type="stmt"/>
-        <line num="3" count="24" type="cond" truecount="2" falsecount="0"/>
-        <line num="4" count="24" type="stmt"/>
-        <line num="5" count="24" type="stmt"/>
-        <line num="6" count="24" type="stmt"/>
-        <line num="9" count="24" type="stmt"/>
-        <line num="28" count="24" type="stmt"/>
-        <line num="53" count="24" type="cond" truecount="2" falsecount="0"/>
+        <line num="1" count="22" type="stmt"/>
+        <line num="3" count="22" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="22" type="stmt"/>
+        <line num="5" count="22" type="stmt"/>
+        <line num="6" count="22" type="stmt"/>
+        <line num="9" count="22" type="stmt"/>
+        <line num="28" count="22" type="stmt"/>
+        <line num="53" count="22" type="cond" truecount="2" falsecount="0"/>
       </file>
       <file name="User.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\models\User.ts">
         <metrics statements="18" coveredstatements="18" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
-        <line num="1" count="18" type="stmt"/>
-        <line num="2" count="18" type="stmt"/>
-        <line num="3" count="18" type="stmt"/>
-        <line num="18" count="18" type="stmt"/>
-        <line num="52" count="18" type="stmt"/>
-        <line num="53" count="20" type="cond" truecount="2" falsecount="0"/>
-        <line num="55" count="19" type="stmt"/>
-        <line num="56" count="19" type="stmt"/>
-        <line num="62" count="18" type="stmt"/>
+        <line num="1" count="16" type="stmt"/>
+        <line num="2" count="16" type="stmt"/>
+        <line num="3" count="16" type="stmt"/>
+        <line num="18" count="16" type="stmt"/>
+        <line num="52" count="16" type="stmt"/>
+        <line num="53" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="55" count="18" type="stmt"/>
+        <line num="56" count="18" type="stmt"/>
+        <line num="62" count="16" type="stmt"/>
         <line num="65" count="1" type="stmt"/>
         <line num="66" count="1" type="stmt"/>
-        <line num="72" count="18" type="stmt"/>
+        <line num="72" count="16" type="stmt"/>
         <line num="73" count="1" type="stmt"/>
         <line num="75" count="1" type="stmt"/>
         <line num="77" count="1" type="stmt"/>
         <line num="78" count="1" type="stmt"/>
         <line num="80" count="1" type="stmt"/>
-        <line num="83" count="18" type="cond" truecount="2" falsecount="0"/>
+        <line num="83" count="16" type="cond" truecount="2" falsecount="0"/>
       </file>
     </package>
     <package name="src.routes">
       <metrics statements="57" coveredstatements="48" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="2"/>
       <file name="auth.routes.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\routes\auth.routes.ts">
         <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="16" type="stmt"/>
-        <line num="2" count="16" type="stmt"/>
-        <line num="3" count="16" type="stmt"/>
-        <line num="4" count="16" type="stmt"/>
-        <line num="6" count="16" type="stmt"/>
-        <line num="8" count="16" type="stmt"/>
-        <line num="9" count="16" type="stmt"/>
-        <line num="10" count="16" type="stmt"/>
-        <line num="11" count="16" type="stmt"/>
-        <line num="12" count="16" type="stmt"/>
-        <line num="14" count="16" type="stmt"/>
-        <line num="21" count="16" type="stmt"/>
+        <line num="1" count="14" type="stmt"/>
+        <line num="2" count="14" type="stmt"/>
+        <line num="3" count="14" type="stmt"/>
+        <line num="4" count="14" type="stmt"/>
+        <line num="6" count="14" type="stmt"/>
+        <line num="8" count="14" type="stmt"/>
+        <line num="9" count="14" type="stmt"/>
+        <line num="10" count="14" type="stmt"/>
+        <line num="11" count="14" type="stmt"/>
+        <line num="12" count="14" type="stmt"/>
+        <line num="14" count="14" type="stmt"/>
+        <line num="21" count="14" type="stmt"/>
       </file>
       <file name="health.routes.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\routes\health.routes.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="16" type="stmt"/>
-        <line num="3" count="16" type="stmt"/>
-        <line num="5" count="16" type="stmt"/>
+        <line num="1" count="14" type="stmt"/>
+        <line num="3" count="14" type="stmt"/>
+        <line num="5" count="14" type="stmt"/>
         <line num="6" count="3" type="stmt"/>
-        <line num="13" count="16" type="stmt"/>
+        <line num="13" count="14" type="stmt"/>
       </file>
       <file name="maintenance.routes.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\routes\maintenance.routes.ts">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="16" type="stmt"/>
-        <line num="2" count="16" type="stmt"/>
-        <line num="4" count="16" type="stmt"/>
-        <line num="6" count="16" type="stmt"/>
+        <line num="1" count="14" type="stmt"/>
+        <line num="2" count="14" type="stmt"/>
+        <line num="4" count="14" type="stmt"/>
+        <line num="6" count="14" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="15" count="16" type="stmt"/>
+        <line num="15" count="14" type="stmt"/>
       </file>
       <file name="project.routes.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\routes\project.routes.ts">
         <metrics statements="16" coveredstatements="7" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="16" type="stmt"/>
-        <line num="2" count="16" type="stmt"/>
-        <line num="3" count="16" type="stmt"/>
-        <line num="5" count="16" type="stmt"/>
-        <line num="7" count="16" type="stmt"/>
+        <line num="1" count="14" type="stmt"/>
+        <line num="2" count="14" type="stmt"/>
+        <line num="3" count="14" type="stmt"/>
+        <line num="5" count="14" type="stmt"/>
+        <line num="7" count="14" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
-        <line num="16" count="16" type="stmt"/>
+        <line num="16" count="14" type="stmt"/>
         <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="18" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
-        <line num="27" count="16" type="stmt"/>
+        <line num="27" count="14" type="stmt"/>
       </file>
       <file name="task.routes.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\routes\task.routes.ts">
         <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="16" type="stmt"/>
-        <line num="2" count="16" type="stmt"/>
-        <line num="3" count="16" type="stmt"/>
-        <line num="4" count="16" type="stmt"/>
-        <line num="6" count="16" type="stmt"/>
-        <line num="7" count="16" type="stmt"/>
-        <line num="9" count="16" type="stmt"/>
-        <line num="12" count="16" type="stmt"/>
-        <line num="15" count="16" type="stmt"/>
-        <line num="23" count="16" type="stmt"/>
-        <line num="25" count="16" type="stmt"/>
-        <line num="26" count="16" type="stmt"/>
-        <line num="27" count="16" type="stmt"/>
-        <line num="28" count="16" type="stmt"/>
-        <line num="31" count="16" type="stmt"/>
-        <line num="37" count="16" type="stmt"/>
-        <line num="39" count="16" type="stmt"/>
+        <line num="1" count="14" type="stmt"/>
+        <line num="2" count="14" type="stmt"/>
+        <line num="3" count="14" type="stmt"/>
+        <line num="4" count="14" type="stmt"/>
+        <line num="6" count="14" type="stmt"/>
+        <line num="7" count="14" type="stmt"/>
+        <line num="9" count="14" type="stmt"/>
+        <line num="12" count="14" type="stmt"/>
+        <line num="15" count="14" type="stmt"/>
+        <line num="23" count="14" type="stmt"/>
+        <line num="25" count="14" type="stmt"/>
+        <line num="26" count="14" type="stmt"/>
+        <line num="27" count="14" type="stmt"/>
+        <line num="28" count="14" type="stmt"/>
+        <line num="31" count="14" type="stmt"/>
+        <line num="37" count="14" type="stmt"/>
+        <line num="39" count="14" type="stmt"/>
       </file>
     </package>
     <package name="src.services">
       <metrics statements="218" coveredstatements="211" conditionals="103" coveredconditionals="87" methods="40" coveredmethods="39"/>
       <file name="auth.service.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\services\auth.service.ts">
         <metrics statements="44" coveredstatements="44" conditionals="14" coveredconditionals="14" methods="5" coveredmethods="5"/>
-        <line num="1" count="16" type="stmt"/>
-        <line num="2" count="16" type="stmt"/>
-        <line num="3" count="16" type="stmt"/>
-        <line num="4" count="16" type="stmt"/>
-        <line num="9" count="16" type="stmt"/>
+        <line num="1" count="14" type="stmt"/>
+        <line num="2" count="14" type="stmt"/>
+        <line num="3" count="14" type="stmt"/>
+        <line num="4" count="14" type="stmt"/>
+        <line num="9" count="14" type="stmt"/>
         <line num="14" count="5" type="stmt"/>
         <line num="16" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="17" count="2" type="stmt"/>
@@ -453,12 +455,12 @@
         <line num="28" count="3" type="stmt"/>
         <line num="29" count="3" type="stmt"/>
         <line num="31" count="3" type="stmt"/>
-        <line num="39" count="7" type="stmt"/>
-        <line num="41" count="7" type="cond" truecount="2" falsecount="0"/>
-        <line num="42" count="4" type="stmt"/>
-        <line num="45" count="3" type="stmt"/>
-        <line num="47" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="48" count="1" type="stmt"/>
+        <line num="39" count="5" type="stmt"/>
+        <line num="41" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="45" count="4" type="stmt"/>
+        <line num="47" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="2" type="stmt"/>
         <line num="51" count="2" type="stmt"/>
         <line num="52" count="2" type="stmt"/>
         <line num="54" count="2" type="stmt"/>
@@ -483,13 +485,13 @@
         <line num="104" count="1" type="stmt"/>
         <line num="106" count="1" type="stmt"/>
         <line num="108" count="1" type="stmt"/>
-        <line num="112" count="16" type="stmt"/>
+        <line num="112" count="14" type="stmt"/>
       </file>
       <file name="csv.service.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\services\csv.service.ts">
         <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="1" count="17" type="stmt"/>
-        <line num="2" count="17" type="stmt"/>
-        <line num="4" count="17" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
@@ -498,8 +500,8 @@
       </file>
       <file name="digest.service.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\services\digest.service.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="17" type="stmt"/>
-        <line num="3" count="17" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="3" count="15" type="stmt"/>
         <line num="4" count="3" type="stmt"/>
         <line num="6" count="3" type="stmt"/>
         <line num="11" count="3" type="stmt"/>
@@ -532,8 +534,8 @@
       </file>
       <file name="file.service.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\services\file.service.ts">
         <metrics statements="20" coveredstatements="20" conditionals="10" coveredconditionals="10" methods="2" coveredmethods="2"/>
-        <line num="2" count="18" type="stmt"/>
-        <line num="4" count="18" type="stmt"/>
+        <line num="2" count="16" type="stmt"/>
+        <line num="4" count="16" type="stmt"/>
         <line num="8" count="4" type="stmt"/>
         <line num="10" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="11" count="1" type="stmt"/>
@@ -542,7 +544,7 @@
         <line num="19" count="3" type="stmt"/>
         <line num="26" count="3" type="stmt"/>
         <line num="28" count="3" type="stmt"/>
-        <line num="31" count="18" type="stmt"/>
+        <line num="31" count="16" type="stmt"/>
         <line num="32" count="4" type="stmt"/>
         <line num="34" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="35" count="1" type="stmt"/>
@@ -555,10 +557,10 @@
       </file>
       <file name="pdf.service.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\services\pdf.service.ts">
         <metrics statements="29" coveredstatements="28" conditionals="3" coveredconditionals="1" methods="9" coveredmethods="8"/>
-        <line num="1" count="17" type="stmt"/>
-        <line num="2" count="17" type="stmt"/>
-        <line num="3" count="17" type="stmt"/>
-        <line num="6" count="17" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="3" count="15" type="stmt"/>
+        <line num="6" count="15" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
@@ -587,22 +589,22 @@
       </file>
       <file name="task.query.service.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\services\task.query.service.ts">
         <metrics statements="67" coveredstatements="61" conditionals="66" coveredconditionals="55" methods="6" coveredmethods="6"/>
-        <line num="2" count="21" type="stmt"/>
-        <line num="3" count="21" type="stmt"/>
-        <line num="25" count="21" type="stmt"/>
+        <line num="2" count="19" type="stmt"/>
+        <line num="3" count="19" type="stmt"/>
+        <line num="25" count="19" type="stmt"/>
         <line num="26" count="17" type="stmt"/>
         <line num="30" count="17" type="cond" truecount="2" falsecount="0"/>
         <line num="31" count="17" type="cond" truecount="2" falsecount="0"/>
         <line num="32" count="17" type="cond" truecount="2" falsecount="0"/>
         <line num="33" count="17" type="cond" truecount="1" falsecount="1"/>
         <line num="35" count="17" type="stmt"/>
-        <line num="38" count="21" type="stmt"/>
+        <line num="38" count="19" type="stmt"/>
         <line num="39" count="16" type="cond" truecount="2" falsecount="0"/>
         <line num="40" count="16" type="cond" truecount="2" falsecount="0"/>
         <line num="43" count="16" type="stmt"/>
-        <line num="50" count="21" type="stmt"/>
+        <line num="50" count="19" type="stmt"/>
         <line num="51" count="3" type="stmt"/>
-        <line num="53" count="21" type="stmt"/>
+        <line num="53" count="19" type="stmt"/>
         <line num="54" count="2" type="stmt"/>
         <line num="55" count="2" type="stmt"/>
         <line num="57" count="1" type="cond" truecount="3" falsecount="1"/>
@@ -610,7 +612,7 @@
         <line num="60" count="1" type="cond" truecount="3" falsecount="1"/>
         <line num="61" count="0" type="stmt"/>
         <line num="63" count="1" type="stmt"/>
-        <line num="67" count="21" type="stmt"/>
+        <line num="67" count="19" type="stmt"/>
         <line num="70" count="9" type="cond" truecount="1" falsecount="1"/>
         <line num="71" count="9" type="cond" truecount="1" falsecount="1"/>
         <line num="73" count="9" type="cond" truecount="4" falsecount="0"/>
@@ -629,7 +631,7 @@
         <line num="98" count="5" type="stmt"/>
         <line num="100" count="5" type="stmt"/>
         <line num="102" count="5" type="stmt"/>
-        <line num="114" count="21" type="stmt"/>
+        <line num="114" count="19" type="stmt"/>
         <line num="117" count="6" type="cond" truecount="1" falsecount="1"/>
         <line num="119" count="6" type="cond" truecount="3" falsecount="1"/>
         <line num="120" count="0" type="stmt"/>
@@ -657,26 +659,26 @@
       </file>
       <file name="task.service.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\services\task.service.ts">
         <metrics statements="25" coveredstatements="25" conditionals="6" coveredconditionals="5" methods="6" coveredmethods="6"/>
-        <line num="1" count="18" type="stmt"/>
-        <line num="3" count="18" type="stmt"/>
+        <line num="1" count="16" type="stmt"/>
+        <line num="3" count="16" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
-        <line num="6" count="18" type="stmt"/>
+        <line num="6" count="16" type="stmt"/>
         <line num="7" count="3" type="stmt"/>
-        <line num="10" count="18" type="stmt"/>
+        <line num="10" count="16" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
-        <line num="19" count="18" type="stmt"/>
+        <line num="19" count="16" type="stmt"/>
         <line num="20" count="3" type="stmt"/>
         <line num="22" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="24" count="2" type="stmt"/>
         <line num="25" count="2" type="stmt"/>
         <line num="27" count="2" type="stmt"/>
-        <line num="30" count="18" type="stmt"/>
+        <line num="30" count="16" type="stmt"/>
         <line num="31" count="2" type="stmt"/>
         <line num="33" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="35" count="2" type="stmt"/>
         <line num="36" count="2" type="stmt"/>
         <line num="38" count="2" type="stmt"/>
-        <line num="41" count="18" type="stmt"/>
+        <line num="41" count="16" type="stmt"/>
         <line num="42" count="3" type="stmt"/>
         <line num="44" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="46" count="2" type="stmt"/>
@@ -688,11 +690,11 @@
       <metrics statements="18" coveredstatements="17" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="5"/>
       <file name="AppError.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\utils\AppError.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="19" type="stmt"/>
-        <line num="6" count="19" type="stmt"/>
-        <line num="7" count="19" type="stmt"/>
-        <line num="8" count="19" type="stmt"/>
-        <line num="10" count="19" type="stmt"/>
+        <line num="1" count="17" type="stmt"/>
+        <line num="6" count="16" type="stmt"/>
+        <line num="7" count="16" type="stmt"/>
+        <line num="8" count="16" type="stmt"/>
+        <line num="10" count="16" type="stmt"/>
       </file>
       <file name="formatDate.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\utils\formatDate.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -701,16 +703,16 @@
       </file>
       <file name="jwt.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\utils\jwt.ts">
         <metrics statements="11" coveredstatements="10" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="3"/>
-        <line num="2" count="18" type="stmt"/>
-        <line num="4" count="18" type="cond" truecount="2" falsecount="0"/>
-        <line num="5" count="18" type="cond" truecount="2" falsecount="0"/>
-        <line num="7" count="18" type="stmt"/>
+        <line num="2" count="16" type="stmt"/>
+        <line num="4" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="5" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="16" type="stmt"/>
         <line num="8" count="7" type="stmt"/>
-        <line num="11" count="18" type="stmt"/>
+        <line num="11" count="16" type="stmt"/>
         <line num="12" count="3" type="stmt"/>
-        <line num="15" count="18" type="stmt"/>
+        <line num="15" count="16" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
-        <line num="19" count="18" type="stmt"/>
+        <line num="19" count="16" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
       </file>
     </package>
@@ -718,10 +720,10 @@
       <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="task.validators.ts" path="C:\Users\rithi\OneDrive\Desktop\task3\src\validators\task.validators.ts">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-        <line num="1" count="16" type="stmt"/>
-        <line num="2" count="16" type="stmt"/>
-        <line num="3" count="16" type="stmt"/>
-        <line num="6" count="16" type="stmt"/>
+        <line num="1" count="14" type="stmt"/>
+        <line num="2" count="14" type="stmt"/>
+        <line num="3" count="14" type="stmt"/>
+        <line num="6" count="14" type="stmt"/>
         <line num="11" count="9" type="stmt"/>
         <line num="16" count="9" type="stmt"/>
         <line num="24" count="9" type="stmt"/>
