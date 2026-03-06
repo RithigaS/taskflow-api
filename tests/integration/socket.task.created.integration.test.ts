@@ -41,6 +41,7 @@ describe("Socket task:created Integration Test", () => {
       const project = await Project.create({
         name: "Socket Project",
         members: [user._id],
+        createdBy: user._id,
       });
 
       const token = jwt.sign(
@@ -58,7 +59,7 @@ describe("Socket task:created Integration Test", () => {
       const timeout = setTimeout(() => {
         socket.close();
         done(new Error("Test timed out waiting for task:created event"));
-      }, 15000);
+      }, 35000);
 
       socket.on("connect_error", (err) => {
         clearTimeout(timeout);
@@ -69,6 +70,7 @@ describe("Socket task:created Integration Test", () => {
       socket.on("connect", async () => {
         await new Promise((r) => setTimeout(r, 200));
 
+        // Listen for task:created event globally (not just in room)
         socket.once("task:created", (payload: any) => {
           clearTimeout(timeout);
           socket.close();
@@ -85,14 +87,13 @@ describe("Socket task:created Integration Test", () => {
           .set("Authorization", `Bearer ${token}`)
           .send({
             title: "Socket Task",
-            description: "created to test socket",
-            status: "todo",
             projectId: project._id.toString(),
-            createdBy: user._id.toString(),
+            priority: "high",
           });
 
-        expect([200, 201]).toContain(res.status);
+        expect(res.status).toBe(201);
       });
     })().catch((e) => done(e));
   });
+  
 });

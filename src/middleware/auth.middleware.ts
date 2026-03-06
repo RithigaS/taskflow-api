@@ -27,7 +27,7 @@ export const isAuth = (
       return res.status(401).json({ message: "Invalid token payload" });
     }
 
-    next(); // ⭐ THIS WAS MISSING OR NOT REACHED
+    next();
   } catch (err) {
     return res.status(401).json({ message: "Invalid token" });
   }
