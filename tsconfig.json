@@ -7,13 +7,13 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "rootDir": "src",
+    "rootDir": ".",
     "outDir": "dist",
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["node"]
+    "types": ["node", "jest"]
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "tests", "dist"]
+  "include": ["src/**/*", "tests/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
