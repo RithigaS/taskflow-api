@@ -53,6 +53,43 @@ router.post(
 
 /* PUBLIC PAGINATION ROUTE - returns paginated tasks */
 router.get("/list", taskController.listTasks);
+/**
+ * @swagger
+ * /api/tasks/project/{projectId}:
+ *   get:
+ *     summary: Get tasks by project ID
+ *     description: Returns all tasks that belong to a specific project.
+ *     tags: [Tasks]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: projectId
+ *         required: true
+ *         description: Project ID
+ *         schema:
+ *           type: string
+ *           example: 67c123abc456def789000111
+ *     responses:
+ *       200:
+ *         description: Tasks fetched successfully
+ *         content:
+ *           application/json:
+ *             example:
+ *               success: true
+ *               count: 2
+ *               data:
+ *                 - _id: "task123"
+ *                   title: "Implement authentication"
+ *                   status: "pending"
+ *                 - _id: "task124"
+ *                   title: "Write tests"
+ *                   status: "completed"
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Project not found
+ */
 
 router.get("/project/:projectId", taskController.getTasksByProject);
 router.put("/:taskId", taskController.updateTask);
