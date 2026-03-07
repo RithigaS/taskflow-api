@@ -371,9 +371,9 @@ Access documentation at:
 
 /api-docs
 
-Example:
+//Swagger ui
 
-http://localhost:5000/api-docs
+**https://taskflow-api-stml.onrender.com/api-docs**
 
 ---
 
