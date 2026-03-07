@@ -2,18 +2,12 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "rootDir": "src",
-    "outDir": "dist",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "types": ["node"]
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "tests", "**/*.test.ts", "**/*.spec.ts"]
+  "exclude": ["node_modules", "tests", "coverage", "dist"]
 }

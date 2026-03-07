@@ -7,9 +7,8 @@ beforeAll(async () => {
 });
 
 afterEach(async () => {
-  const db = mongoose.connection.db;
-  if (db) {
-    await db.dropDatabase();
+  if (mongoose.connection.db) {
+    await mongoose.connection.db.dropDatabase();
   }
 });
 
