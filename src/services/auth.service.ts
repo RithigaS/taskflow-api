@@ -1,5 +1,4 @@
 import { User } from "../models/User";
-import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import {
   generateToken,
@@ -17,12 +16,10 @@ class AuthService {
       throw new AppError("User already exists", 409);
     }
 
-    const hashed = await bcrypt.hash(data.password, 10);
-
     const user = await User.create({
       name: data.name || "User",
       email: data.email,
-      password: hashed,
+      password: data.password,
     });
 
     const accessToken = generateToken({ userId: user._id.toString() });
@@ -35,6 +32,7 @@ class AuthService {
     };
   }
 
+  /* ================= LOGIN ================= */
   async login(email: string, password: string) {
     const user = await User.findOne({ email });
 
@@ -42,7 +40,7 @@ class AuthService {
       throw new AppError("Invalid credentials", 401);
     }
 
-    const match = await bcrypt.compare(password, user.password);
+    const match = await user.comparePassword(password);
 
     if (!match) {
       throw new AppError("Invalid credentials", 401);
@@ -57,6 +55,7 @@ class AuthService {
       refreshToken,
     };
   }
+
   /* ================= REFRESH TOKEN ================= */
   async refreshToken(token: string) {
     if (!token) {
@@ -65,7 +64,7 @@ class AuthService {
 
     const payload: any = verifyRefreshToken(token);
 
-    const accessToken = generateToken(payload.userId);
+    const accessToken = generateToken({ userId: payload.userId });
 
     return { accessToken };
   }
@@ -80,8 +79,8 @@ class AuthService {
 
     const resetToken = crypto.randomBytes(32).toString("hex");
 
-    user.resetPasswordToken = resetToken;
-    user.resetPasswordExpires = new Date(Date.now() + 3600000); // 1 hour
+    user.resetToken = resetToken;
+    user.resetTokenExp = new Date(Date.now() + 3600000); // 1 hour
 
     await user.save();
 
@@ -91,17 +90,17 @@ class AuthService {
   /* ================= RESET PASSWORD ================= */
   async resetPassword(token: string, newPassword: string) {
     const user = await User.findOne({
-      resetPasswordToken: token,
-      resetPasswordExpires: { $gt: new Date() },
+      resetToken: token,
+      resetTokenExp: { $gt: new Date() },
     });
 
     if (!user) {
       throw new AppError("Invalid or expired token", 400);
     }
 
-    user.password = await bcrypt.hash(newPassword, 10);
-    user.resetPasswordToken = undefined;
-    user.resetPasswordExpires = undefined;
+    user.password = newPassword;
+    user.resetToken = undefined;
+    user.resetTokenExp = undefined;
 
     await user.save();
 
