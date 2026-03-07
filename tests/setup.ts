@@ -1,23 +1,25 @@
 import mongoose from "mongoose";
-import { MongoMemoryServer } from "mongodb-memory-server";
 
 jest.setTimeout(30000);
 
-let mongo: MongoMemoryServer;
-
 beforeAll(async () => {
-  mongo = await MongoMemoryServer.create();
-  const uri = mongo.getUri();
-  await mongoose.connect(uri);
+  const mongoUri = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/testdb";
+
+  await mongoose.connect(mongoUri);
 });
 
 afterEach(async () => {
-  if (mongoose.connection.readyState === 1) {
-    await mongoose.connection.db.dropDatabase();
+  const db = mongoose.connection.db;
+
+  if (db) {
+    const collections = await db.collections();
+
+    for (const collection of collections) {
+      await collection.deleteMany({});
+    }
   }
 });
 
 afterAll(async () => {
-  await mongoose.disconnect();
-  await mongo.stop();
+  await mongoose.connection.close();
 });
