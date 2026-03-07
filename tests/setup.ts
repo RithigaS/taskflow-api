@@ -12,8 +12,9 @@ beforeAll(async () => {
 });
 
 afterEach(async () => {
-  if (mongoose.connection.readyState === 1) {
-    await mongoose.connection.db.dropDatabase();
+  const db = mongoose.connection.db;
+  if (mongoose.connection.readyState === 1 && db) {
+    await db.dropDatabase();
   }
 });
 
