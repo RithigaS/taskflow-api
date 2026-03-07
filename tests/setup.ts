@@ -3,12 +3,20 @@ import mongoose from "mongoose";
 jest.setTimeout(30000);
 
 beforeAll(async () => {
-  // your connection code
+  const mongoUri = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/testdb";
+
+  await mongoose.connect(mongoUri);
 });
 
 afterEach(async () => {
-  if (mongoose.connection.db) {
-    await mongoose.connection.db.dropDatabase();
+  const db = mongoose.connection.db;
+
+  if (db) {
+    const collections = await db.collections();
+
+    for (const collection of collections) {
+      await collection.deleteMany({});
+    }
   }
 });
 
