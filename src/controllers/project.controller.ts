@@ -14,7 +14,14 @@ export const createProject = async (req: any, res: Response) => {
 
     res.status(201).json({
       success: true,
-      data: project,
+      data: {
+        projectId: project._id,
+        name: project.name,
+        description: project.description,
+        members: project.members,
+        createdBy: project.createdBy,
+        createdAt: project.createdAt,
+      },
     });
   } catch (err: any) {
     res.status(500).json({

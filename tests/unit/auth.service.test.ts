@@ -13,6 +13,7 @@ describe("AuthService", () => {
     email: "test@example.com",
     password: "hashedPassword",
     save: jest.fn(),
+    comparePassword: jest.fn(),
   };
 
   beforeEach(() => {
@@ -52,7 +53,7 @@ describe("AuthService", () => {
 
   it("should login successfully", async () => {
     (User.findOne as jest.Mock).mockResolvedValue(mockUser);
-    (bcrypt.compare as jest.Mock).mockResolvedValue(true);
+    mockUser.comparePassword.mockResolvedValue(true);
 
     (jwtUtils.generateToken as jest.Mock).mockReturnValue("accessToken");
     (jwtUtils.generateRefreshToken as jest.Mock).mockReturnValue(
@@ -61,6 +62,7 @@ describe("AuthService", () => {
 
     const result = await authService.login("test@example.com", "123");
 
+    expect(mockUser.comparePassword).toHaveBeenCalledWith("123");
     expect(result.accessToken).toBe("accessToken");
     expect(result.refreshToken).toBe("refreshToken");
   });
@@ -75,7 +77,7 @@ describe("AuthService", () => {
 
   it("should throw if password mismatch", async () => {
     (User.findOne as jest.Mock).mockResolvedValue(mockUser);
-    (bcrypt.compare as jest.Mock).mockResolvedValue(false);
+    mockUser.comparePassword.mockResolvedValue(false);
 
     await expect(authService.login("a@a.com", "123")).rejects.toThrow(
       "Invalid credentials",

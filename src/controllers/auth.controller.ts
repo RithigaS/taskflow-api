@@ -70,6 +70,21 @@ export const forgotPassword = async (
   }
 };
 
+//get reset token (for testing/manual reset)
+
+export const getResetToken = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const result = await authService.getResetToken(req.body.email);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+};
+
 //reset password
 
 export const resetPassword = async (

@@ -60,11 +60,12 @@ router.post("/signup", authController.register);
  */
 router.post("/login", authController.login);
 router.post("/refresh", authController.refreshToken);
+
 /**
  * @swagger
- * /api/auth/forgot:
+ * /api/auth/token:
  *   post:
- *     summary: Generate password reset token
+ *     summary: Get password reset token (for manual copy)
  *     tags: [Auth]
  *     requestBody:
  *       required: true
@@ -77,9 +78,12 @@ router.post("/refresh", authController.refreshToken);
  *                 type: string
  *     responses:
  *       200:
- *         description: Reset token generated
+ *         description: Reset token generated (copy this token)
+ *
  */
 router.post("/forgot", authController.forgotPassword);
+router.post("/token", authController.getResetToken);
+
 /**
  * @swagger
  * /api/auth/reset:

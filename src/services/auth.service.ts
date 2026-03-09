@@ -87,6 +87,33 @@ class AuthService {
     return "Password reset token generated";
   }
 
+  /* ================= GET RESET TOKEN ================= */
+  async getResetToken(email: string) {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      throw new AppError("User not found", 404);
+    }
+
+    // Generate new token if not exists or expired
+    if (
+      !user.resetToken ||
+      !user.resetTokenExp ||
+      user.resetTokenExp < new Date()
+    ) {
+      const resetToken = crypto.randomBytes(32).toString("hex");
+      user.resetToken = resetToken;
+      user.resetTokenExp = new Date(Date.now() + 3600000); // 1 hour
+      await user.save();
+    }
+
+    return {
+      message: "Password reset token generated",
+      token: user.resetToken,
+      expiresAt: user.resetTokenExp,
+    };
+  }
+
   /* ================= RESET PASSWORD ================= */
   async resetPassword(token: string, newPassword: string) {
     const user = await User.findOne({

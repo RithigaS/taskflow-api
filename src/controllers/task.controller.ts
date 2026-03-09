@@ -26,7 +26,16 @@ export const createTask = async (req: Request, res: Response) => {
 
     return res.status(201).json({
       success: true,
-      data: task,
+      data: {
+        taskId: (task as any)._id,
+        title: (task as any).title,
+        description: (task as any).description,
+        status: (task as any).status,
+        priority: (task as any).priority,
+        project: (task as any).project,
+        assignedTo: (task as any).assignedTo,
+        createdAt: (task as any).createdAt,
+      },
     });
   } catch (error: any) {
     const statusCode = error.statusCode || 500;

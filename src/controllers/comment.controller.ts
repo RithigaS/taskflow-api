@@ -11,9 +11,19 @@ export const addComment = async (req: any, res: Response) => {
       author: req.userId,
     });
 
+    // Populate task details to return task info
+    await comment.populate("task", "title description");
+
     res.status(201).json({
       success: true,
-      data: comment,
+      data: {
+        _id: comment._id,
+        taskId: comment.task,
+        content: comment.content,
+        author: comment.author,
+        createdAt: comment.createdAt,
+        updatedAt: comment.updatedAt,
+      },
     });
   } catch (err: any) {
     res.status(500).json({
