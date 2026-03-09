@@ -11,6 +11,11 @@ const options: swaggerJsdoc.Options = {
     servers: [
       {
         url: "http://localhost:5000",
+        description: "Local server",
+      },
+      {
+        url: "https://taskflow-api-stml.onrender.com",
+        description: "Production server",
       },
     ],
     components: {
@@ -28,7 +33,7 @@ const options: swaggerJsdoc.Options = {
       },
     ],
   },
-  apis: ["./src/routes/*.ts"], // read JSDoc comments from routes
+  apis: ["./src/routes/*.ts"],
 };
 
 export const swaggerSpec = swaggerJsdoc(options);
