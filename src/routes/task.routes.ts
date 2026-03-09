@@ -38,11 +38,26 @@ router.get("/", isAuth, taskController.getAllTasks);
  *             properties:
  *               title:
  *                 type: string
+ *               description:
+ *                 type: string
  *               priority:
+ *                 type: string
+ *                 enum: [LOW, MEDIUM, HIGH]
+ *               projectId:
  *                 type: string
  *     responses:
  *       201:
  *         description: Task created
+ *         content:
+ *           application/json:
+ *             example:
+ *               success: true
+ *               data:
+ *                 taskId: "60d5ec49f1b2c8b1f8c8e1a1"
+ *                 title: "New Task"
+ *                 description: "Task description"
+ *                 status: "todo"
+ *                 priority: "HIGH"
  */
 router.post(
   "/",

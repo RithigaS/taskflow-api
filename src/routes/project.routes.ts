@@ -29,6 +29,14 @@ const router = Router();
  *     responses:
  *       201:
  *         description: Project created
+ *         content:
+ *           application/json:
+ *             example:
+ *               success: true
+ *               data:
+ *                 projectId: "60d5ec49f1b2c8b1f8c8e1a1"
+ *                 name: "My Project"
+ *                 description: "Project description"
  */
 router.post("/", isAuth, createProject);
 
